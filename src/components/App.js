@@ -4,9 +4,9 @@ import MapForm from "./form";
 import Loader from "./loader";
 import Map from "./map";
 
-import * as API from "../service/api";
-import { IN_PROGRESS, NUMBER_ATTEMPTS, SUCCESS, FAIL } from "./../config/apiConstant";
-import * as utils from './../service/utils';
+import * as API from "../services/api";
+import { IN_PROGRESS, NUMBER_ATTEMPTS, SUCCESS, FAIL } from "../config/apiConstant";
+import * as utils from '../services/utils';
 
 export default class App extends Component {
   state = { isLoader: false, direction: null, token: null, message: '' };
@@ -23,9 +23,9 @@ export default class App extends Component {
   }
   
   _formSubmit = async formData => {
-    this.setState({ isLoader: true });
-
     try {
+      this.setState({ isLoader: true });
+
       var token = await API.submitDirection(formData);
       this.setState({token}, this._getDirection);
 
@@ -38,9 +38,9 @@ export default class App extends Component {
   }
   
   _getDirection = async () => {
-    this.setState({ isLoader: true });
-
     try {
+      this.setState({ isLoader: true });
+
       var direction = await API.getDirection(this.state.token);
       if (direction) {
         this._handleDirectionResponse(direction);
@@ -62,7 +62,7 @@ export default class App extends Component {
   _handleDirectionResponse = direction => {
       switch(direction.data.status) {
           case SUCCESS:
-              this.setState({ direction: direction.data });
+              this.setState({ direction: direction.data, message: '' });
               break;
           case IN_PROGRESS:
               let counterValue = utils.countFn();
@@ -71,6 +71,7 @@ export default class App extends Component {
               }
               break;
           case FAIL:
+              this._resetApp();
               this.setState({message: direction.data.error});
               break;
           default:

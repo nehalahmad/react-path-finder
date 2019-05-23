@@ -1,23 +1,23 @@
 import React from 'react';
-import maps from "../../service/googleMap";
+import maps from "../../services/googleMap";
 
 export default class GoogleMapTextBox extends React.Component {
     state = { value: "" };
     
     componentDidMount() {
-        this.autoComplete();
+        this._autoComplete();
     }
 
-    setValue = (value) => {
+    setValue = value => {
         this.setState({ value })
     }
 
     getValue = () => {
-        this.setState({ value: this.refs.formInput.value })
+        this.setState({ value: this.refs.formInput.value });
         return this.refs.formInput.value;
     }
 
-    autoComplete = async () => {
+    _autoComplete = async () => {
         const maps = await this.props.maps();
         new maps.places.Autocomplete(this.refs.formInput);
     };
@@ -28,12 +28,9 @@ export default class GoogleMapTextBox extends React.Component {
         return (
             <div className="form-group">
                 <label>{title}</label>
-                <input type="text" ref="formInput" value={this.state.value} onChange={(e) => {
-                    this.setState({ value: e.target.value })}} className="form-control" required />
-                {
-                    this.state.value && 
-                        <span className="col-lg-1 cross-btn" onClick={() => {this.setState({ value: "" })}}>x</span>
-                }
+                <input type="text" ref="formInput" value={this.state.value} className="form-control" required 
+                    onChange={e => this.setState({ value: e.target.value })} />
+                {this.state.value && <span className="col-lg-1 cross-btn" onClick={() => {this.setState({ value: "" })}}>X</span>}
             </div>
         );
     }

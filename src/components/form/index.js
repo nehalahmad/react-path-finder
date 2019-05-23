@@ -7,7 +7,6 @@ import ButtonContainer from './components/buttonContainer';
 export default class DirectionForm extends Component {
   _onFormSubmit = e => {
     e.preventDefault();
-
     this.props.onSubmit({from: this.refs.startLoc.getValue(), to: this.refs.dropOffLoc.getValue()});
   }
   
@@ -27,8 +26,7 @@ export default class DirectionForm extends Component {
             <legend>Map Form</legend>
             <MapTextBox title="Starting a location" ref="startLoc" />
             <MapTextBox title="Drop-off point" ref="dropOffLoc" />
-            <DirectionDetail direction={direction} />
-            {message && <p className="bg-danger">{message}</p>}
+            <DirectionDetail direction={direction} message={message} />
             <ButtonContainer />
           </fieldset>
         </form>

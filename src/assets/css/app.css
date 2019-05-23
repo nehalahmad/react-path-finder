@@ -3,13 +3,14 @@
 #mapForm .form-group { position: relative; }
 #mapForm .form-group .cross-btn { 
     position: absolute;
-    top: 20px;
+    top: 25px;
     right: 0px;
     cursor: pointer;
-    padding: 10px;
-    text-align: center; 
+    padding: 7px;
+    text-align: center;
 }
 
+form .form-group .form-control { padding-right: 35px; }
 form .form-group label { float: left }
   
 .btn.btn-default {
@@ -25,7 +26,7 @@ form .form-group label { float: left }
 }
 
 .map-container{
-    height: 500px;
+    height: 800px;
     width: 100%;
 }
 
@@ -47,8 +48,8 @@ form .form-group label { float: left }
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
     position: absolute;
-    left: calc(50% - 120px);
-    top: calc(50% - 120px);
+    left: calc(50% - 60px);
+    top: calc(50% - 60px);
 }
   
 /* Safari */

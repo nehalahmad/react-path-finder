@@ -1,11 +1,11 @@
 import React from "react";
-import maps from "../../service/googleMap";
+import maps from "../../services/googleMap";
 
 class Map extends React.Component {
     map;
     maps;
     componentDidMount() {
-        this.initMap();
+        this._initMap();
     }
 
     render() {
@@ -16,7 +16,7 @@ class Map extends React.Component {
         )
     }
     
-    initMap = async () => {
+    _initMap = async () => {
         this.maps = await this.props.maps();
 
         this.map = new this.maps.Map(this.refs.mapContainer, {
@@ -25,17 +25,17 @@ class Map extends React.Component {
         });
     };
 
-    preparePositionsFromPath = path => {
+    _preparePositionsFromPath = path => {
         return path.map(([lat, lng]) => new this.maps.LatLng(lat, lng));
     };
     
-    showDirections = ({ path }) => {
+    _showDirections = ({ path }) => {
         const directionsService = new this.maps.DirectionsService();
         const directionsRenderer = new this.maps.DirectionsRenderer();
 
         directionsRenderer.setMap(this.map);
 
-        const positions = this.preparePositionsFromPath(path);
+        const positions = this._preparePositionsFromPath(path);
         const waypoints = positions
             .slice(1, positions.length - 1)
             .map(location => ({ location, stopover: false }));
@@ -61,20 +61,20 @@ class Map extends React.Component {
 
     componentDidUpdate(props,state,snapShot) {
         if (snapShot) {
-            if(snapShot === 'RESET_MAP'){
-                this.initMap();
+            if (snapShot === 'RESET_MAP') {
+                this._initMap();
             } else {
-                this.showDirections(snapShot);
+                this._showDirections(snapShot);
             }  
         }
     }
     
     shouldComponentUpdate(nextProps){
         const {directions} = this.props;
-        if(nextProps.directions && nextProps.directions.path && directions && directions.path){
-            if(directions.path.length === nextProps.directions.path.length){
-                for(let index = 0; index < directions.path.length ; index++){
-                    if(directions.path[index][0] !== nextProps.directions.path[index][0] || directions.path[index][1] !== nextProps.directions.path[index][1]){
+        if (nextProps.directions && nextProps.directions.path && directions && directions.path) {
+            if (directions.path.length === nextProps.directions.path.length) {
+                for (let index = 0; index < directions.path.length ; index++) {
+                    if (directions.path[index][0] !== nextProps.directions.path[index][0] || directions.path[index][1] !== nextProps.directions.path[index][1]) {
                         return true;
                     }
                     return false;
@@ -86,8 +86,8 @@ class Map extends React.Component {
     
     getSnapshotBeforeUpdate(prevProps) {
         const {directions} = this.props;
-        if(prevProps.directions !== directions){
-            if(directions === null){
+        if (prevProps.directions !== directions) {
+            if (directions === null) {
                 return 'RESET_MAP'
             } 
             return this.props.directions;
