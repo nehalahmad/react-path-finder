@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import MapTextBox from "../inputbox/mapTextBox";
+import MapTextBox from "../inputbox";
 import DirectionDetail from "./directionDetail";
 import ButtonContainer from './components/buttonContainer';
 
