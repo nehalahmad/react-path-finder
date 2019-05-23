@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 
 import MapForm from "./form";
-import Loader from "./loader/loader";
+import Loader from "./loader";
 import Map from "./map";
 
 import * as API from "../service/api";
-import { IN_PROGRESS, NumberOfAttempts, SUCCESS, FAIL } from "./../config/apiConstant";
+import { IN_PROGRESS, NUMBER_ATTEMPTS, SUCCESS, FAIL } from "./../config/apiConstant";
 import * as utils from './../service/utils';
 
 export default class App extends Component {
-  state = { isLoader: false, direction: null, token: null };
+  state = { isLoader: false, direction: null, token: null, message: '' };
 
   render() {
     return (
       <div className="row">
           <MapForm onSubmit={this._formSubmit} onReset={this._resetApp} direction={this.state.direction}
-              submitBtnText={this.state.direction && this.state.token ? "Re-submit" : "Submit"} />
+              submitBtnText={this.state.direction && this.state.token ? "Re-submit" : "Submit"} message={this.state.message} />
           <Map directions={this.state.direction} />
           <Loader isLoading={this.state.isLoader} />
       </div>
@@ -31,7 +31,7 @@ export default class App extends Component {
 
     } catch(error) {
       alert(error.message);
-
+      this._resetApp();
     } finally {
       this.setState({ isLoader: false });
     }
@@ -42,7 +42,6 @@ export default class App extends Component {
 
     try {
       var direction = await API.getDirection(this.state.token);
-
       if (direction) {
         this._handleDirectionResponse(direction);
       } else {
@@ -50,6 +49,7 @@ export default class App extends Component {
       }
     } catch(error) {
       alert(error.message);
+      this._resetApp();
     } finally {
       this.setState({ isLoader: false });
     }
@@ -62,17 +62,20 @@ export default class App extends Component {
   _handleDirectionResponse = direction => {
       switch(direction.data.status) {
           case SUCCESS:
-          case FAIL:
               this.setState({ direction: direction.data });
               break;
           case IN_PROGRESS:
               let counterValue = utils.countFn();
-              if (counterValue <= NumberOfAttempts) {
+              if (counterValue <= NUMBER_ATTEMPTS) {
                   this._getDirection();  // get data in case of any error
               }
               break;
+          case FAIL:
+              this.setState({message: direction.data.error});
+              break;
           default:
-              throw new Error(direction.data.status);
+              this._resetApp();
+              throw new Error("Oops, something went wrong!");
       }
   };
 }

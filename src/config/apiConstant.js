@@ -15,4 +15,4 @@ export const ROUTE_API = 'route';
 export const SUCCESS = 'success';
 export const IN_PROGRESS = 'in progress';
 export const FAIL = 'failure';
-export const NumberOfAttempts = 3;
+export const NUMBER_ATTEMPTS = 3;
