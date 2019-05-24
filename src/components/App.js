@@ -15,7 +15,7 @@ export default class App extends Component {
     return (
       <div className="row">
           <MapForm onSubmit={this._formSubmit} onReset={this._resetApp} direction={this.state.direction}
-              submitBtnText={this.state.direction && this.state.token ? "Re-submit" : "Submit"} message={this.state.message} />
+              submitBtnText={this.state.direction ? "Re-submit" : "Submit"} message={this.state.message} />
           <Map directions={this.state.direction} />
           <Loader isLoading={this.state.isLoader} />
       </div>

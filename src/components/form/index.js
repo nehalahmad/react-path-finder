@@ -17,7 +17,7 @@ export default class DirectionForm extends Component {
   }
 
   render() {
-    let { direction, message } = this.props;
+    let { direction, message, submitBtnText } = this.props;
 
     return (
       <div className="col-sm-3">
@@ -27,7 +27,7 @@ export default class DirectionForm extends Component {
             <MapTextBox title="Starting a location" ref="startLoc" />
             <MapTextBox title="Drop-off point" ref="dropOffLoc" />
             <DirectionDetail direction={direction} message={message} />
-            <ButtonContainer />
+            <ButtonContainer submitBtnText={submitBtnText} />
           </fieldset>
         </form>
       </div>
