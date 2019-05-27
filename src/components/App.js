@@ -82,9 +82,7 @@ export default class App extends Component {
       var token = await API.submitDirection(formData);
       this.setState({ token }, this._getDirection);
     } catch (error) {
-      this._resetApp({ errorMessage: error.message });
-    } finally {
-      this.setState({ isLoader: false });
+      this._resetApp({ errorMessage: error.message, isLoader: false });
     }
   };
 
@@ -94,8 +92,6 @@ export default class App extends Component {
    */
   _getDirection = async () => {
     try {
-      this.setState({ isLoader: true });
-
       var direction = await API.getDirection(this.state.token);
       if (direction) {
         this._handleDirectionResponse(direction);
@@ -120,7 +116,7 @@ export default class App extends Component {
    * @description: Reset app state
    */
   _resetApp = (stateObj = {}) => {
-    this.setState({ ...stateObj, direction: null, token: null });
+    this.setState({ ...stateObj, direction: null, token: null, message: "" });
   };
 
   /**
