@@ -4,21 +4,10 @@ import MapTextBox from "../inputbox";
 import DirectionDetail from "./directionDetail";
 import ButtonContainer from "./components/buttonContainer";
 
+/**
+ * @description: Form container all the input fields
+ */
 export default class DirectionForm extends Component {
-  _onFormSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmit({
-      from: this.refs.startLoc.getValue(),
-      to: this.refs.dropOffLoc.getValue()
-    });
-  };
-
-  _onFormReset = () => {
-    this.refs.startLoc.setValue("");
-    this.refs.dropOffLoc.setValue("");
-    this.props.onReset();
-  };
-
   render() {
     const { direction, message, submitBtnText } = this.props;
 
@@ -41,4 +30,26 @@ export default class DirectionForm extends Component {
       </div>
     );
   }
+
+  /**
+   * @name: Form submit handler
+   * @description: on submit will set from location and to location
+   */
+  _onFormSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit({
+      from: this.refs.startLoc.getValue(),
+      to: this.refs.dropOffLoc.getValue()
+    });
+  };
+
+  /**
+   * @name: Form on reset handler
+   * @description: Will reset form inputs and some state as well
+   */
+  _onFormReset = () => {
+    this.refs.startLoc.setValue("");
+    this.refs.dropOffLoc.setValue("");
+    this.props.onReset();
+  };
 }

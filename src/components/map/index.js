@@ -1,6 +1,10 @@
 import React from "react";
 import maps from "../../services/googleMap";
 
+/**
+ * @name: Map
+ * @description: Show default map and when inputs are provided show propper map
+ */
 class Map extends React.Component {
   map;
   maps;
@@ -16,6 +20,9 @@ class Map extends React.Component {
     );
   }
 
+  /**
+   * @description: initialize map
+   */
   _initMap = async () => {
     this.maps = await this.props.maps();
 
@@ -29,6 +36,9 @@ class Map extends React.Component {
     return path.map(([lat, lng]) => new this.maps.LatLng(lat, lng));
   };
 
+  /**
+   * @description: show direction on map based upon input location values
+   */
   _showDirections = ({ path }) => {
     const directionsService = new this.maps.DirectionsService();
     const directionsRenderer = new this.maps.DirectionsRenderer();

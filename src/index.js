@@ -6,6 +6,9 @@ import registerServiceWorker from "./registerServiceWorker";
 ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();
 
+/**
+ * @description: Handler erros on window level
+ */
 window.onerror = function _globalErrorHandler(
   msg,
   url,

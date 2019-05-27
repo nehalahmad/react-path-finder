@@ -14,6 +14,9 @@ import {
 import * as utils from "../services/utils";
 import ToastMessage from "./toastMessage";
 
+/**
+ * @description: Main file to display overall map page UI
+ */
 export default class App extends Component {
   state = {
     isLoader: false,
@@ -60,6 +63,9 @@ export default class App extends Component {
     clearTimeout(this.timerID);
   }
 
+  /**
+   * @description: Form submit handler
+   */
   _formSubmit = async formData => {
     try {
       this.setState({ isLoader: true });
@@ -73,6 +79,10 @@ export default class App extends Component {
     }
   };
 
+  /**
+   * @description: Make API call to get direction
+   * @param: token
+   */
   _getDirection = async () => {
     try {
       this.setState({ isLoader: true });
@@ -90,14 +100,23 @@ export default class App extends Component {
     }
   };
 
+  /**
+   * @description: Message handler to set error message
+   */
   _setErrorMessageHandler = errorMessage => {
     this.setState({ errorMessage });
   };
 
+  /**
+   * @description: Reset app state
+   */
   _resetApp = (stateObj = {}) => {
     this.setState({ ...stateObj, direction: null, token: null });
   };
 
+  /**
+   * @description: Handle directions of Map
+   */
   _handleDirectionResponse = direction => {
     switch (direction.data.status) {
       case SUCCESS:
