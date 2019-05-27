@@ -1,71 +1,95 @@
-.App { margin-top: 50px; }
-
-#mapForm .form-group { position: relative; }
-#mapForm .form-group .cross-btn { 
-    position: absolute;
-    top: 25px;
-    right: 0px;
-    cursor: pointer;
-    padding: 7px;
-    text-align: center;
+.App {
+  margin-top: 50px;
 }
 
-form .form-group .form-control { padding-right: 35px; }
-form .form-group label { float: left }
-  
+#mapForm .form-group {
+  position: relative;
+}
+#mapForm .form-group .cross-btn {
+  position: absolute;
+  top: 25px;
+  right: 0px;
+  cursor: pointer;
+  padding: 7px;
+  text-align: center;
+}
+
+form .form-group .form-control {
+  padding-right: 35px;
+}
+form .form-group label {
+  float: left;
+}
+
 .btn.btn-default {
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
-}
-  
-.btn.btn-default:hover {
-    color: #333;
-    background-color: #e6e6e6;
-    border-color: #adadad;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
 }
 
-.map-container{
-    height: 800px;
-    width: 100%;
+.btn.btn-default:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.map-container {
+  height: 800px;
+  width: 100%;
 }
 
 .loader-container {
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: #80808038;
-    width: 100%;
-    height: 99%;
-    z-index: 999;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #80808038;
+  width: 100%;
+  height: 99%;
+  z-index: 999;
 }
 .loader-container .loader {
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid #3498db;
-    width: 120px;
-    height: 120px;
-    -webkit-animation: spin 2s linear infinite; /* Safari */
-    animation: spin 2s linear infinite;
-    position: absolute;
-    left: calc(50% - 60px);
-    top: calc(50% - 60px);
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  position: absolute;
+  left: calc(50% - 60px);
+  top: calc(50% - 60px);
 }
-  
+
 /* Safari */
 @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media only screen and (max-width: 767px) {
-    #mapForm .button-container { margin-bottom: 20px }
+  #mapForm .button-container {
+    margin-bottom: 20px;
+  }
 }
 
-.m-r-20 { margin-right: 20px }
-.bg-danger { color: #333; padding: 15px; margin-bottom: 25px; }
+.m-r-20 {
+  margin-right: 20px;
+}
+.bg-danger {
+  color: #333;
+  padding: 15px;
+  margin-bottom: 25px;
+}

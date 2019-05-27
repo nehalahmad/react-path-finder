@@ -1,11 +1,13 @@
-import React from 'react';
-import './assets/css/app.css';
+import React from "react";
+import "./assets/css/app.css";
 
-import GetMapPath from './components/App';
+import GetMapPath from "./components/App";
 
 function App() {
   return (
-    <div className="App container-fluid"><GetMapPath /></div>
+    <div className="App container-fluid">
+      <GetMapPath />
+    </div>
   );
 }
 
