@@ -54,7 +54,7 @@ class Map extends React.Component {
       if (status === this.maps.DirectionsStatus.OK) {
         directionsRenderer.setDirections(response);
       } else {
-        alert("Error in direction service response");
+        this.props.setErrorMessage("Error in direction service response");
       }
     });
   };

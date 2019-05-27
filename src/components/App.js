@@ -12,9 +12,16 @@ import {
   FAIL
 } from "../config/apiConstant";
 import * as utils from "../services/utils";
+import ToastMessage from "./toastMessage";
 
 export default class App extends Component {
-  state = { isLoader: false, direction: null, token: null, message: "" };
+  state = {
+    isLoader: false,
+    direction: null,
+    token: null,
+    message: "",
+    errorMessage: ""
+  };
 
   render() {
     return (
@@ -26,10 +33,31 @@ export default class App extends Component {
           submitBtnText={this.state.direction ? "Re-submit" : "Submit"}
           message={this.state.message}
         />
-        <Map directions={this.state.direction} />
+        <Map
+          directions={this.state.direction}
+          setErrorMessage={this._setErrorMessageHandler}
+        />
         <Loader isLoading={this.state.isLoader} />
+        {this.state.errorMessage && (
+          <ToastMessage
+            errorMessage={this.state.errorMessage}
+            setErrorMessageHandler={this._setErrorMessageHandler}
+          />
+        )}
       </div>
     );
+  }
+
+  componentDidUpdate(prevProps, nextState, snapshot) {
+    if (nextState.errorMessage) {
+      this.timerID = setTimeout(() => {
+        this._setErrorMessageHandler("");
+      }, 2000);
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timerID);
   }
 
   _formSubmit = async formData => {
@@ -39,8 +67,7 @@ export default class App extends Component {
       var token = await API.submitDirection(formData);
       this.setState({ token }, this._getDirection);
     } catch (error) {
-      alert(error.message);
-      this._resetApp();
+      this._resetApp({ errorMessage: error.message });
     } finally {
       this.setState({ isLoader: false });
     }
@@ -57,15 +84,18 @@ export default class App extends Component {
         throw new Error("Direction couldn't found!");
       }
     } catch (error) {
-      alert(error.message);
-      this._resetApp();
+      this._resetApp({ errorMessage: error.message });
     } finally {
       this.setState({ isLoader: false });
     }
   };
 
-  _resetApp = () => {
-    this.setState({ direction: null, token: null });
+  _setErrorMessageHandler = errorMessage => {
+    this.setState({ errorMessage });
+  };
+
+  _resetApp = (stateObj = {}) => {
+    this.setState({ ...stateObj, direction: null, token: null });
   };
 
   _handleDirectionResponse = direction => {
@@ -80,12 +110,11 @@ export default class App extends Component {
         }
         break;
       case FAIL:
-        this._resetApp();
-        this.setState({ message: direction.data.error });
+        this._resetApp({ message: direction.data.error });
         break;
       default:
         this._resetApp();
         throw new Error("Oops, something went wrong!");
     }
-  };
+  };  
 }
