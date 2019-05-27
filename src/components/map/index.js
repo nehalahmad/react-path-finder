@@ -8,6 +8,10 @@ import maps from "../../services/googleMap";
 class Map extends React.Component {
   map;
   maps;
+
+  /**
+   * @description: life cycle method
+   */
   componentDidMount() {
     this._initMap();
   }
@@ -69,6 +73,12 @@ class Map extends React.Component {
     });
   };
 
+  /**
+   * @description: life cycle method
+   * @param {*} props 
+   * @param {*} state 
+   * @param {*} snapShot 
+   */
   componentDidUpdate(props, state, snapShot) {
     if (snapShot) {
       if (snapShot === "RESET_MAP") {
@@ -79,6 +89,10 @@ class Map extends React.Component {
     }
   }
 
+  /**
+   * @description: life cycle method
+   * @param {*} nextProps 
+   */
   shouldComponentUpdate(nextProps) {
     const { directions } = this.props;
     if (
@@ -102,6 +116,10 @@ class Map extends React.Component {
     return true;
   }
 
+  /**
+   * @description life cycle method
+   * @param {*} prevProps 
+   */
   getSnapshotBeforeUpdate(prevProps) {
     const { directions } = this.props;
     if (prevProps.directions !== directions) {

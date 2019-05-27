@@ -1,10 +1,8 @@
 import React, { Fragment } from "react";
 
 /**
- * A definition list to display distance information
- * And also to show message
+ * @description: A definition list to display distance information, and also to show message
  */
-
 export default props => {
   return (
     <Fragment>

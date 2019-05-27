@@ -3,7 +3,7 @@ import React from "react";
 import FormButton from "../../../formButton";
 
 /**
- * A wrapper container for form buttons
+ * @description: A wrapper container for form buttons
  */
 export default props => {
   return (

@@ -51,6 +51,12 @@ export default class App extends Component {
     );
   }
 
+  /**
+   * @description: life cycle method
+   * @param {*} prevProps 
+   * @param {*} nextState 
+   * @param {*} snapshot 
+   */
   componentDidUpdate(prevProps, nextState, snapshot) {
     if (nextState.errorMessage) {
       this.timerID = setTimeout(() => {
@@ -59,6 +65,9 @@ export default class App extends Component {
     }
   }
 
+  /**
+   * @description: life cycle method
+   */
   componentWillUnmount() {
     clearTimeout(this.timerID);
   }
