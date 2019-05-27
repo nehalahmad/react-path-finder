@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ButtonContainer /> button container renders with 'Re-submit' text 1`] = `ShallowWrapper {}`;
+
+exports[`<ButtonContainer /> button container renders with 'Submit' text 1`] = `ShallowWrapper {}`;
+
+exports[`<ToastMessage /> Render toast with a message 1`] = `ShallowWrapper {}`;
+
+exports[`<ToastMessage /> Render toast with a message 2`] = `ShallowWrapper {}`;
+
+exports[`<ToastMessage /> Render toast without a message 1`] = `ShallowWrapper {}`;
+
+exports[`<ToastMessage /> it'll close  1`] = `ShallowWrapper {}`;
+
+exports[`<ToastMessage /> it'll close the toast message 1`] = `ShallowWrapper {}`;
