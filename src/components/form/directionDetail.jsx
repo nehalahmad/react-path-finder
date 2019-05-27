@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const DirectionDetail = props => {
+export default props => {
   return (
     <Fragment>
       {props.direction && (
@@ -13,4 +13,3 @@ const DirectionDetail = props => {
     </Fragment>
   );
 };
-export default DirectionDetail;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormButton = props => {
+export default props => {
   let { buttonType, buttonLabel, isPrimary } = props;
 
   return (
@@ -12,5 +12,3 @@ const FormButton = props => {
     </button>
   );
 };
-
-export default FormButton;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Loader = props => {
+export default props => {
   return (
     props.isLoading && (
       <div className="loader-container">
@@ -9,5 +9,3 @@ const Loader = props => {
     )
   );
 };
-
-export default Loader;

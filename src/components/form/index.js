@@ -20,7 +20,7 @@ export default class DirectionForm extends Component {
   };
 
   render() {
-    let { direction, message, submitBtnText } = this.props;
+    const { direction, message, submitBtnText } = this.props;
 
     return (
       <div className="col-sm-3">

@@ -1,6 +1,6 @@
 import React from "react";
 
-const toastMessage = porps => {
+export default porps => {
   return (
     <div className="alert alert-danger alert-dismissible fade in error-message" role="alert">
       <button
@@ -16,5 +16,3 @@ const toastMessage = porps => {
     </div>
   );
 };
-
-export default toastMessage;
