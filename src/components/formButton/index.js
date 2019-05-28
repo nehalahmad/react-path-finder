@@ -4,13 +4,8 @@ import React from "react";
  * @name: FormButton
  * @description: A functional component to create a button
  */
-export default props => {
-  let {
-    buttonType = "submit",
-    buttonLabel = "Reset",
-    isPrimary = false,
-    isLoader
-  } = props;
+const FormButton = props => {
+  const { buttonType, buttonLabel, isPrimary, isLoader } = props;
 
   return (
     <button
@@ -22,3 +17,11 @@ export default props => {
     </button>
   );
 };
+
+FormButton.defaultProps = {
+  buttonType: "submit",
+  buttonLabel: "Reset",
+  isPrimary: false
+};
+
+export default FormButton;

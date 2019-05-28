@@ -17,7 +17,7 @@ export default class GoogleMapTextBox extends Component {
   }
 
   render() {
-    const { title = "Starting location" } = this.props;
+    const { title, placeholder } = this.props;
 
     return (
       <div className="form-group">
@@ -29,6 +29,7 @@ export default class GoogleMapTextBox extends Component {
           className="form-control"
           required
           onChange={e => this.setState({ value: e.target.value })}
+          placeholder={placeholder}
         />
         {this.state.value && (
           <span
@@ -73,5 +74,7 @@ export default class GoogleMapTextBox extends Component {
 }
 
 GoogleMapTextBox.defaultProps = {
-  maps
+  maps,
+  title: "Starting location",
+  placeholder: "enter starting location"
 };

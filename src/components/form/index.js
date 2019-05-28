@@ -22,7 +22,11 @@ export default class DirectionForm extends Component {
           <fieldset>
             <legend>Location input form</legend>
             <MapTextBox ref="startLoc" />
-            <MapTextBox title="Drop-off point" ref="dropOffLoc" />
+            <MapTextBox
+              title="Drop-off point"
+              ref="dropOffLoc"
+              placeholder="enter drop-off point"
+            />
             <DirectionDetail direction={direction} message={message} />
             <ButtonContainer
               submitBtnText={submitBtnText}
@@ -40,6 +44,7 @@ export default class DirectionForm extends Component {
    */
   _onFormSubmit = e => {
     e.preventDefault();
+
     this.props.onSubmit({
       from: this.refs.startLoc._getValue(),
       to: this.refs.dropOffLoc._getValue()

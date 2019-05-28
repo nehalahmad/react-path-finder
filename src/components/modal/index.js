@@ -1,6 +1,10 @@
 import React, { Fragment } from "react";
 
 export default props => {
+  if (!props.errorMessage) {
+    return null;
+  }
+
   return (
     <Fragment>
       <div

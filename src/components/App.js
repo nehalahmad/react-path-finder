@@ -44,12 +44,10 @@ export default class App extends Component {
           setErrorMessage={this._setErrorMessageHandler}
         />
         <Loader isLoading={this.state.isLoader} />
-        {this.state.errorMessage && (
-          <Modal
-            errorMessage={this.state.errorMessage}
-            setErrorMessageHandler={this._setErrorMessageHandler}
-          />
-        )}
+        <Modal
+          errorMessage={this.state.errorMessage}
+          setErrorMessageHandler={this._setErrorMessageHandler}
+        />
       </div>
     );
   }
@@ -64,7 +62,7 @@ export default class App extends Component {
     if (nextState.errorMessage) {
       this.timerID = setTimeout(() => {
         this._setErrorMessageHandler("");
-      }, 1000);
+      }, 1500);
     }
   }
 
