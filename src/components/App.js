@@ -125,7 +125,11 @@ export default class App extends Component {
   _handleDirectionResponse = direction => {
     switch (direction.data.status) {
       case SUCCESS:
-        this.setState({ direction: direction.data, isLoader: false, message: '' });
+        this.setState({
+          direction: direction.data,
+          isLoader: false,
+          message: ""
+        });
         break;
       case IN_PROGRESS:
         let counterValue = utils.countFn();

@@ -21,7 +21,7 @@ export default class DirectionForm extends Component {
         >
           <fieldset>
             <legend>Map Form</legend>
-            <MapTextBox title="Starting a location" ref="startLoc" />
+            <MapTextBox title="Starting location" ref="startLoc" />
             <MapTextBox title="Drop-off point" ref="dropOffLoc" />
             <DirectionDetail direction={direction} message={message} />
             <ButtonContainer submitBtnText={submitBtnText} />

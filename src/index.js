@@ -9,13 +9,7 @@ registerServiceWorker();
 /**
  * @description: Handler erros on window level
  */
-window.onerror = function _globalErrorHandler(
-  msg,
-  url,
-  lineNo,
-  columnNo,
-  error
-) {
+window.onerror = (msg, url, lineNo, columnNo, error) => {
   var string = msg.toLowerCase();
   var substring = "script error";
   if (string.indexOf(substring) > -1) {

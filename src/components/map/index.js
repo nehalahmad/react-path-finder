@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import maps from "../../services/googleMap";
 
 /**
  * @name: Map
  * @description: Show default map and when inputs are provided show propper map
  */
-class Map extends React.Component {
+class Map extends Component {
   map;
   maps;
 

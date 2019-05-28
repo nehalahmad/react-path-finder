@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import maps from "../../services/googleMap";
 
 /**
@@ -6,7 +6,7 @@ import maps from "../../services/googleMap";
  * @description: Create Google Auto-Complete of places
  * @param: take input location
  */
-export default class GoogleMapTextBox extends React.Component {
+export default class GoogleMapTextBox extends Component {
   state = { value: "" };
 
   /**
