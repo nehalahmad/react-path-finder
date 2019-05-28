@@ -1,5 +1,5 @@
 .App {
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 #mapForm .form-group {
@@ -39,7 +39,7 @@ form .form-group label {
 }
 
 .loader-container {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   background-color: #80808038;
@@ -85,6 +85,12 @@ form .form-group label {
   }
 }
 
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  .modal-dialog {
+    margin-top: 40px;
+  }
+}
+
 .m-r-20 {
   margin-right: 20px;
 }
@@ -94,5 +100,9 @@ form .form-group label {
   margin-bottom: 25px;
 }
 
-.fade.show { opacity: 1; }
-.modal-backdrop.fade.show { opacity: .5; }
+.fade.show {
+  opacity: 1;
+}
+.modal-backdrop.fade.show {
+  opacity: 0.5;
+}

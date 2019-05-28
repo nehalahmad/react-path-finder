@@ -109,6 +109,7 @@ export default class App extends Component {
    * @description: Message handler to set error message
    */
   _setErrorMessageHandler = errorMessage => {
+    document.body.classList.remove("modal-open");
     this.setState({ errorMessage });
   };
 
