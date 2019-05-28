@@ -21,11 +21,12 @@ export default class DirectionForm extends Component {
         >
           <fieldset>
             <legend>Location input form</legend>
-            <MapTextBox ref="startLoc" />
+            <MapTextBox ref="startLoc" id="startLoc" autoFocus />
             <MapTextBox
               title="Drop-off point"
               ref="dropOffLoc"
               placeholder="enter drop-off point"
+              id="dropOffPoint"
             />
             <DirectionDetail direction={direction} message={message} />
             <ButtonContainer

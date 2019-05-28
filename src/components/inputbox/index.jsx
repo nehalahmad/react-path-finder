@@ -17,11 +17,11 @@ export default class GoogleMapTextBox extends Component {
   }
 
   render() {
-    const { title, placeholder } = this.props;
+    const { title, placeholder, id, autoFocus } = this.props;
 
     return (
       <div className="form-group">
-        <label>{title}</label>
+        <label htmlFor={id}>{title}</label>
         <input
           type="text"
           ref="formInput"
@@ -30,6 +30,9 @@ export default class GoogleMapTextBox extends Component {
           required
           onChange={e => this.setState({ value: e.target.value })}
           placeholder={placeholder}
+          id={id}
+          autoFocus={autoFocus}
+          tabIndex={autoFocus ? 1 : 2}
         />
         {this.state.value && (
           <span
@@ -76,5 +79,6 @@ export default class GoogleMapTextBox extends Component {
 GoogleMapTextBox.defaultProps = {
   maps,
   title: "Starting location",
-  placeholder: "enter starting location"
+  placeholder: "enter starting location",
+  autoFocus: false
 };
