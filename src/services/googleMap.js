@@ -1,10 +1,9 @@
 import GoogleMapsLoader from "google-maps";
 
-import { googleAPIKey } from "../config/apiConstant";
 /**
  * @description setting google map
  */
-GoogleMapsLoader.KEY = googleAPIKey;
+GoogleMapsLoader.KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 GoogleMapsLoader.LIBRARIES = ["geometry", "places"];
 
 let google;

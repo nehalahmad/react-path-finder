@@ -75,23 +75,27 @@ class Map extends React.Component {
 
   /**
    * @description: life cycle method
-   * @param {*} props 
-   * @param {*} state 
-   * @param {*} snapShot 
+   * @param {*} props
+   * @param {*} state
+   * @param {*} snapShot
    */
   componentDidUpdate(props, state, snapShot) {
-    if (snapShot) {
-      if (snapShot === "RESET_MAP") {
-        this._initMap();
-      } else {
-        this._showDirections(snapShot);
+    try {
+      if (snapShot) {
+        if (snapShot === "RESET_MAP") {
+          this._initMap();
+        } else {
+          this._showDirections(snapShot);
+        }
       }
+    } catch (error) {
+      this.props.setErrorMessage(error.message);
     }
   }
 
   /**
    * @description: life cycle method
-   * @param {*} nextProps 
+   * @param {*} nextProps
    */
   shouldComponentUpdate(nextProps) {
     const { directions } = this.props;
@@ -118,7 +122,7 @@ class Map extends React.Component {
 
   /**
    * @description life cycle method
-   * @param {*} prevProps 
+   * @param {*} prevProps
    */
   getSnapshotBeforeUpdate(prevProps) {
     const { directions } = this.props;

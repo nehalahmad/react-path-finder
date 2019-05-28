@@ -53,15 +53,15 @@ export default class App extends Component {
 
   /**
    * @description: life cycle method
-   * @param {*} prevProps 
-   * @param {*} nextState 
-   * @param {*} snapshot 
+   * @param {*} prevProps
+   * @param {*} nextState
+   * @param {*} snapshot
    */
   componentDidUpdate(prevProps, nextState, snapshot) {
     if (nextState.errorMessage) {
       this.timerID = setTimeout(() => {
         this._setErrorMessageHandler("");
-      }, 2000);
+      }, 1000);
     }
   }
 
@@ -99,9 +99,7 @@ export default class App extends Component {
         throw new Error("Direction couldn't found!");
       }
     } catch (error) {
-      this._resetApp({ errorMessage: error.message });
-    } finally {
-      this.setState({ isLoader: false });
+      this._resetApp({ errorMessage: error.message, isLoader: false });
     }
   };
 
@@ -116,7 +114,7 @@ export default class App extends Component {
    * @description: Reset app state
    */
   _resetApp = (stateObj = {}) => {
-    this.setState({ ...stateObj, direction: null, token: null, message: "" });
+    this.setState({ direction: null, token: null, message: "", ...stateObj });
   };
 
   /**
@@ -125,20 +123,21 @@ export default class App extends Component {
   _handleDirectionResponse = direction => {
     switch (direction.data.status) {
       case SUCCESS:
-        this.setState({ direction: direction.data, message: "" });
+        this.setState({ direction: direction.data, isLoader: false });
         break;
       case IN_PROGRESS:
         let counterValue = utils.countFn();
         if (counterValue <= NUMBER_ATTEMPTS) {
+          this.setState({ message: "Attempt failed! trying again..." });
           this._getDirection(); // get data in case of any error
         }
         break;
       case FAIL:
-        this._resetApp({ message: direction.data.error });
+        this._resetApp({ message: direction.data.error, isLoader: false });
         break;
       default:
-        this._resetApp();
+        this._resetApp({ isLoader: false });
         throw new Error("Oops, something went wrong!");
     }
-  };  
+  };
 }
