@@ -5,12 +5,18 @@ import React from "react";
  * @description: A functional component to create a button
  */
 export default props => {
-  let { buttonType, buttonLabel, isPrimary } = props;
+  let {
+    buttonType = "submit",
+    buttonLabel = "Reset",
+    isPrimary = false,
+    isLoader
+  } = props;
 
   return (
     <button
       type={buttonType}
-      className={isPrimary ? "btn btn-primary m-r-20" : "btn btn-default"}
+      className={isPrimary ? "btn btn-primary" : "btn btn-default"}
+      disabled={isLoader}
     >
       {buttonLabel}
     </button>

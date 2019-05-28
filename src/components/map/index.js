@@ -28,12 +28,16 @@ class Map extends Component {
    * @description: initialize map
    */
   _initMap = async () => {
-    this.maps = await this.props.maps();
+    try {
+      this.maps = await this.props.maps();
 
-    this.map = new this.maps.Map(this.refs.mapContainer, {
-      zoom: 10,
-      center: { lat: 22.372081, lng: 114.107877 }
-    });
+      this.map = new this.maps.Map(this.refs.mapContainer, {
+        zoom: 10,
+        center: { lat: 22.372081, lng: 114.107877 }
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   _preparePositionsFromPath = path => {

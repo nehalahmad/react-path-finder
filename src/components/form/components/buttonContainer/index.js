@@ -8,12 +8,8 @@ import FormButton from "../../../formButton";
 export default props => {
   return (
     <div className="button-container text-right">
-      <FormButton
-        buttonType="submit"
-        buttonLabel={props.submitBtnText}
-        isPrimary
-      />
-      <FormButton buttonType="reset" buttonLabel="Reset" />
+      <FormButton buttonLabel={props.submitBtnText} isPrimary isLoader={props.isLoader} />
+      <FormButton buttonType="reset" />
     </div>
   );
 };

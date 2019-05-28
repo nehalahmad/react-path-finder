@@ -17,7 +17,7 @@ export default class GoogleMapTextBox extends Component {
   }
 
   render() {
-    const { title } = this.props;
+    const { title = "Starting location" } = this.props;
 
     return (
       <div className="form-group">
@@ -47,15 +47,15 @@ export default class GoogleMapTextBox extends Component {
   /**
    * @description: set input value
    */
-  setValue = value => {
+  _setValue = value => {
     this.setState({ value });
   };
 
   /**
    * @description: get input value
    */
-  getValue = () => {
-    this.setState({ value: this.refs.formInput.value });
+  _getValue = () => {
+    this._setValue(this.refs.formInput.value);
     return this.refs.formInput.value;
   };
 
@@ -63,8 +63,12 @@ export default class GoogleMapTextBox extends Component {
    * @description: Autucomplete input fields based upon input location
    */
   _autoComplete = async () => {
-    const maps = await this.props.maps();
-    new maps.places.Autocomplete(this.refs.formInput);
+    try {
+      const maps = await this.props.maps();
+      new maps.places.Autocomplete(this.refs.formInput);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 }
 

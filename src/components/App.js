@@ -33,8 +33,11 @@ export default class App extends Component {
           onSubmit={this._formSubmit}
           onReset={this._resetApp}
           direction={this.state.direction}
-          submitBtnText={this.state.direction ? "Re-submit" : "Submit"}
+          submitBtnText={
+            this.state.token || this.state.message ? "Re-submit" : "Submit"
+          }
           message={this.state.message}
+          isLoader={this.state.isLoader}
         />
         <Map
           directions={this.state.direction}
