@@ -12,7 +12,7 @@ import {
   FAIL
 } from "../config/apiConstant";
 import * as utils from "../services/utils";
-import ToastMessage from "./toastMessage";
+import Modal from "./modal";
 
 /**
  * @description: Main file to display overall map page UI
@@ -42,7 +42,7 @@ export default class App extends Component {
         />
         <Loader isLoading={this.state.isLoader} />
         {this.state.errorMessage && (
-          <ToastMessage
+          <Modal
             errorMessage={this.state.errorMessage}
             setErrorMessageHandler={this._setErrorMessageHandler}
           />
@@ -82,6 +82,7 @@ export default class App extends Component {
       var token = await API.submitDirection(formData);
       this.setState({ token }, this._getDirection);
     } catch (error) {
+      document.body.classList.add("modal-open");
       this._resetApp({ errorMessage: error.message, isLoader: false });
     }
   };
@@ -99,6 +100,7 @@ export default class App extends Component {
         throw new Error("Direction couldn't found!");
       }
     } catch (error) {
+      document.body.classList.add("modal-open");
       this._resetApp({ errorMessage: error.message, isLoader: false });
     }
   };
@@ -123,12 +125,11 @@ export default class App extends Component {
   _handleDirectionResponse = direction => {
     switch (direction.data.status) {
       case SUCCESS:
-        this.setState({ direction: direction.data, isLoader: false });
+        this.setState({ direction: direction.data, isLoader: false, message: '' });
         break;
       case IN_PROGRESS:
         let counterValue = utils.countFn();
         if (counterValue <= NUMBER_ATTEMPTS) {
-          this.setState({ message: "Attempt failed! trying again..." });
           this._getDirection(); // get data in case of any error
         }
         break;

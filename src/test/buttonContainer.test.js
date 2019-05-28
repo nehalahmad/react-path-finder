@@ -1,6 +1,6 @@
-import React from 'react';
-import ButtonContainer from './../components/form/components/buttonContainer';
-import {shallow} from 'enzyme';
+import React from "react";
+import ButtonContainer from "./../components/form/components/buttonContainer";
+import { shallow } from "enzyme";
 
 describe("<ButtonContainer />", () => {
   it("button container renders with 'Submit' text", () => {
