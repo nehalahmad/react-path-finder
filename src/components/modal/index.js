@@ -6,12 +6,6 @@ export default class Modal extends Component {
       return null;
     }
 
-    this._clickOutsideHandler = e => {
-      if (e.target.className && e.target.className.includes("show")) {
-        this.props.setErrorMessageHandler("");
-      }
-    };
-
     return (
       <Fragment>
         <div
@@ -47,4 +41,10 @@ export default class Modal extends Component {
       </Fragment>
     );
   }
+
+  _clickOutsideHandler = e => {
+    if (e.target.className && e.target.className.includes("show")) {
+      this.props.setErrorMessageHandler("");
+    }
+  };
 }
