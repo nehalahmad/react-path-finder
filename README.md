@@ -7,11 +7,11 @@ How to build a production build
 
 Google Map API KEY
   :file : '.env',
-  variable Name : REACT_APP_GOOGLE_API_KEY
+  1. variable Name : REACT_APP_GOOGLE_API_KEY
  
 Some Constants
   :file : '/src/config/apiConstant.js',
-  variable Name : SUCCESS
-  variable Name : IN_PROGRESS
-  variable Name : FAIL
-  variable Name : NUMBER_ATTEMPTS
+  1. variable Name : SUCCESS
+  2. variable Name : IN_PROGRESS
+  3. variable Name : FAIL
+  4. variable Name : NUMBER_ATTEMPTS
