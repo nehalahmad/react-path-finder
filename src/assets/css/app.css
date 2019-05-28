@@ -1,10 +1,17 @@
+/**
+ * App level CSS
+ */
 .App {
   margin-top: 20px;
 }
 
+/**
+ * Form CSS
+ */
 #mapForm .form-group {
   position: relative;
 }
+
 #mapForm .form-group .cross-btn {
   position: absolute;
   top: 25px;
@@ -14,30 +21,37 @@
   text-align: center;
 }
 
-form .form-group .form-control {
+#mapForm .form-group .form-control {
   padding-right: 35px;
 }
-form .form-group label {
+
+#mapForm .form-group label {
   float: left;
 }
 
-.btn.btn-default {
+#mapForm .btn.btn-default {
   color: #333;
   background-color: #fff;
   border-color: #ccc;
 }
 
-.btn.btn-default:hover {
+#mapForm .btn.btn-default:hover {
   color: #333;
   background-color: #e6e6e6;
   border-color: #adadad;
 }
 
+/**
+ * Map CSS
+ */
 .map-container {
   height: 800px;
   width: 100%;
 }
 
+/**
+ * Loader related CSS
+ */
 .loader-container {
   position: fixed;
   left: 0;
@@ -47,6 +61,7 @@ form .form-group label {
   height: 100%;
   z-index: 999;
 }
+
 .loader-container .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -58,6 +73,26 @@ form .form-group label {
   position: absolute;
   left: calc(50% - 60px);
   top: calc(50% - 60px);
+}
+
+.fade.show {
+  opacity: 1;
+}
+.modal-backdrop.fade.show {
+  opacity: 0.5;
+}
+
+/**
+ * General CSS
+ */
+.m-r-20 {
+  margin-right: 20px;
+}
+
+.bg-danger {
+  color: #333;
+  padding: 15px;
+  margin-bottom: 25px;
 }
 
 /* Safari */
@@ -79,6 +114,9 @@ form .form-group label {
   }
 }
 
+/**
+ * Media Queries
+ */
 @media only screen and (max-width: 767px) {
   #mapForm .button-container {
     margin-bottom: 20px;
@@ -89,20 +127,4 @@ form .form-group label {
   .modal-dialog {
     margin-top: 40px;
   }
-}
-
-.m-r-20 {
-  margin-right: 20px;
-}
-.bg-danger {
-  color: #333;
-  padding: 15px;
-  margin-bottom: 25px;
-}
-
-.fade.show {
-  opacity: 1;
-}
-.modal-backdrop.fade.show {
-  opacity: 0.5;
 }
