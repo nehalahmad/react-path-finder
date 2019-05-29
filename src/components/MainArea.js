@@ -38,7 +38,9 @@ export default class MainArea extends Component {
             onSubmit={this._formSubmit}
             onReset={this._resetApp}
             resetFormMessage={this._resetFormMessage}
-            submitBtnText={(!isLoader && (token || message)) ? "Re-submit" : "Submit"}
+            submitBtnText={
+              !isLoader && (token || message) ? "Re-submit" : "Submit"
+            }
             setErrorMessage={this._setErrorMessageHandler}
             {...this.state}
           />
