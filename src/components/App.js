@@ -1,150 +1,64 @@
 import React, { Component } from "react";
 
-import MapForm from "./form";
-import Loader from "./loader";
-import Map from "./map";
-
-import * as API from "../services/api";
-import {
-  IN_PROGRESS,
-  NUMBER_ATTEMPTS,
-  SUCCESS,
-  FAIL
-} from "../config/apiConstant";
-import * as utils from "../services/utils";
-import Modal from "./modal";
+// import MainArea component
+import MainArea from "./MainArea";
 
 /**
- * @description: Main file to display overall map page UI
+ * @description: wrapper file to display overall map page UI
  */
 export default class App extends Component {
-  state = {
-    isLoader: false,
-    direction: null,
-    token: null,
-    message: "",
-    errorMessage: ""
-  };
-
-  render() {
-    return (
-      <div className="row">
-        <MapForm
-          onSubmit={this._formSubmit}
-          onReset={this._resetApp}
-          direction={this.state.direction}
-          submitBtnText={
-            this.state.token || this.state.message ? "Re-submit" : "Submit"
-          }
-          message={this.state.message}
-          isLoader={this.state.isLoader}
-        />
-        <Map
-          directions={this.state.direction}
-          setErrorMessage={this._setErrorMessageHandler}
-        />
-        <Loader isLoading={this.state.isLoader} />
-        <Modal
-          errorMessage={this.state.errorMessage}
-          setErrorMessageHandler={this._setErrorMessageHandler}
-        />
-      </div>
-    );
+  /**
+   * @description: life cycle method
+   */
+  componentDidMount() {
+    window.addEventListener("error", this._handleGlobalError);
+    window.addEventListener("unhandledrejection", this._unhandledRejection);
   }
 
   /**
    * @description: life cycle method
-   * @param {*} prevProps
-   * @param {*} nextState
-   * @param {*} snapshot
    */
-  componentDidUpdate(prevProps, nextState, snapshot) {
-    if (nextState.errorMessage) {
-      this.timerID = setTimeout(() => {
-        this._setErrorMessageHandler("");
-      }, 1500);
-    }
+  render() {
+    return <MainArea ref="main" />;
   }
 
   /**
    * @description: life cycle method
    */
   componentWillUnmount() {
-    clearTimeout(this.timerID);
+    window.removeEventListener("error", this._handleGlobalError);
+    window.removeEventListener("unhandledrejection", this._unhandledRejection);
   }
 
   /**
-   * @description: Form submit handler
+   * @description: Handler erros on window level
    */
-  _formSubmit = async formData => {
-    try {
-      this.setState({ isLoader: true });
-
-      var token = await API.submitDirection(formData);
-      this.setState({ token }, this._getDirection);
-    } catch (error) {
-      document.body.classList.add("modal-open");
-      this._resetApp({ errorMessage: error.message, isLoader: false });
+  _handleGlobalError = (msg, url, lineNo, columnNo, error) => {
+    var string = msg.toLowerCase();
+    var substring = "script error";
+    if (string.indexOf(substring) > -1) {
+      this.refs.main._setErrorMessageHandler(
+        "Script Error: See Browser Console for Detail"
+      );
+    } else {
+      var message = [
+        "Message: " + msg,
+        "URL: " + url,
+        "Line: " + lineNo,
+        "Column: " + columnNo,
+        "Error object: " + JSON.stringify(error)
+      ].join(" - ");
+      this.refs.main._setErrorMessageHandler(message);
     }
+    return false;
   };
 
   /**
-   * @description: Make API call to get direction
-   * @param: token
+   * @description: handle global unhandled rejections
    */
-  _getDirection = async () => {
-    try {
-      var direction = await API.getDirection(this.state.token);
-      if (direction) {
-        this._handleDirectionResponse(direction);
-      } else {
-        throw new Error("Direction couldn't found!");
-      }
-    } catch (error) {
-      document.body.classList.add("modal-open");
-      this._resetApp({ errorMessage: error.message, isLoader: false });
-    }
-  };
-
-  /**
-   * @description: Message handler to set error message
-   */
-  _setErrorMessageHandler = errorMessage => {
-    document.body.classList.remove("modal-open");
-    this.setState({ errorMessage });
-  };
-
-  /**
-   * @description: Reset app state
-   */
-  _resetApp = (stateObj = {}) => {
-    this.setState({ direction: null, token: null, message: "", ...stateObj });
-  };
-
-  /**
-   * @description: Handle directions of Map
-   */
-  _handleDirectionResponse = direction => {
-    switch (direction.data.status) {
-      case SUCCESS:
-        this.setState({
-          direction: direction.data,
-          isLoader: false,
-          message: ""
-        });
-        break;
-      case IN_PROGRESS:
-        let counterValue = utils.countFn();
-        if (counterValue <= NUMBER_ATTEMPTS) {
-          this._getDirection(); // get data in case of any error
-        }
-        break;
-      case FAIL:
-        this._resetApp({ message: direction.data.error, isLoader: false });
-        break;
-      default:
-        this._resetApp({ isLoader: false });
-        throw new Error("Oops, something went wrong!");
-    }
+  _unhandledRejection = event => {
+    this.refs.main._setErrorMessageHandler(
+      `UNHANDLED PROMISE REJECTION: ${event.reason}`
+    );
   };
 }

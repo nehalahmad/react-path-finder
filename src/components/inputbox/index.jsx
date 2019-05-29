@@ -37,9 +37,7 @@ export default class GoogleMapTextBox extends Component {
         {this.state.value && (
           <span
             className="col-lg-1 cross-btn"
-            onClick={() => {
-              this.setState({ value: "" });
-            }}
+            onClick={this._resetFieldHandler}
           >
             X
           </span>
@@ -71,8 +69,14 @@ export default class GoogleMapTextBox extends Component {
       const maps = await this.props.maps();
       new maps.places.Autocomplete(this.refs.formInput);
     } catch (error) {
-      console.log(error.message);
+      this.props.setErrorMessage(error.message);
     }
+  };
+
+  _resetFieldHandler = () => {
+    this.setState({ value: "" });
+    this.refs.formInput.focus();
+    this.props.resetFormMessage();
   };
 }
 

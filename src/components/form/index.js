@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import MapTextBox from "../inputbox";
-import DirectionDetail from "./directionDetail";
+import DirectionDetail from "./DirectionDetail";
 import ButtonContainer from "./components/buttonContainer";
 
 /**
@@ -9,10 +9,16 @@ import ButtonContainer from "./components/buttonContainer";
  */
 export default class DirectionForm extends Component {
   render() {
-    const { direction, message, submitBtnText, isLoader } = this.props;
+    const {
+      direction,
+      message,
+      submitBtnText,
+      isLoader,
+      setErrorMessage
+    } = this.props;
 
     return (
-      <div className="col-sm-3">
+      <aside className="col-sm-3">
         <form
           name="locationForm"
           onSubmit={this._onFormSubmit}
@@ -21,12 +27,20 @@ export default class DirectionForm extends Component {
         >
           <fieldset>
             <legend>Location input form</legend>
-            <MapTextBox ref="startLoc" id="startLoc" autoFocus />
+            <MapTextBox
+              ref="startLoc"
+              id="startLoc"
+              autoFocus
+              setErrorMessage={setErrorMessage}
+              resetFormMessage={this._resetFormMessage}
+            />
             <MapTextBox
               title="Drop-off point"
               ref="dropOffLoc"
               placeholder="enter drop-off point"
               id="dropOffPoint"
+              setErrorMessage={setErrorMessage}
+              resetFormMessage={this._resetFormMessage}
             />
             <DirectionDetail direction={direction} message={message} />
             <ButtonContainer
@@ -35,7 +49,7 @@ export default class DirectionForm extends Component {
             />
           </fieldset>
         </form>
-      </div>
+      </aside>
     );
   }
 
@@ -60,5 +74,14 @@ export default class DirectionForm extends Component {
     this.refs.startLoc._setValue("");
     this.refs.dropOffLoc._setValue("");
     this.props.onReset();
+  };
+
+  _resetFormMessage = () => {
+    if (
+      !document.getElementById("startLoc").value ||
+      !document.getElementById("dropOffPoint").value
+    ) {
+      this.props.resetFormMessage();
+    }
   };
 }

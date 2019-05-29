@@ -18,9 +18,9 @@ class Map extends Component {
 
   render() {
     return (
-      <div className="col-sm-9">
+      <main className="col-sm-9">
         <div ref="mapContainer" className="map-container" />
-      </div>
+      </main>
     );
   }
 
@@ -36,7 +36,7 @@ class Map extends Component {
         center: { lat: 22.372081, lng: 114.107877 }
       });
     } catch (error) {
-      console.log(error.message);
+      this.props.setErrorMessage(error.message);
     }
   };
 
