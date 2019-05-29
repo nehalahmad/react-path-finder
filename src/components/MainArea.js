@@ -57,27 +57,6 @@ export default class MainArea extends Component {
   }
 
   /**
-   * @description: life cycle method
-   * @param {*} prevProps
-   * @param {*} nextState
-   * @param {*} snapshot
-   */
-  componentDidUpdate(prevProps, nextState, snapshot) {
-    if (nextState.errorMessage) {
-      this.timerID = setTimeout(() => {
-        this._setErrorMessageHandler("");
-      }, 1500);
-    }
-  }
-
-  /**
-   * @description: life cycle method
-   */
-  componentWillUnmount() {
-    clearTimeout(this.timerID);
-  }
-
-  /**
    * @description: Form submit handler
    */
   _formSubmit = async formData => {
