@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 
 // import custom components
-import ErrorBoundary from "./../../../components/shared/error-boundary";
-import LocationForm from "./components/location-form";
+import ErrorBoundary from "./../../shared/errorBoundary";
+import LocationForm from "./location-form";
 import Loader from "../../shared/loader";
-import PathMap from "./components/path-map";
+import PathMap from "./path-map";
 import ModalDialog from "../../shared/modal-dialog";
 
 // import api and utils
-import * as API from "../../../services/api";
-import * as utils from "../../../services/utils";
+import * as API from "../../services/api";
+import * as utils from "../../services/utils";
 
 // import constants
 import {
@@ -18,16 +18,16 @@ import {
   NUMBER_ATTEMPTS,
   SUCCESS,
   FAIL
-} from "../../../config/apiConstants";
+} from "../../config/apiConstants";
 import {
   DIRECTION_NOT_FOUND,
   SOMETHING_WRONG,
   RESUBMIT_TEXT,
   SUBMIT_TEXT
-} from "../../../config/appConstants";
+} from "../../config/appConstants";
 
 // css file
-import "./../../../assets/css/app.css";
+import "./../../assets/css/app.css";
 
 /**
  * @description: Main container file to display entire Map Page

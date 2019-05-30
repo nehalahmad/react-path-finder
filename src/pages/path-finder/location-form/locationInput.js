@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-import maps from "./../../../../../../services/googleMap";
-import { LOCATION } from "../../../../../../config/appConstants";
+import maps from "../../../services/googleMap";
+import { LOCATION } from "../../../config/appConstants";
 
 /**
  * @name: InputBox

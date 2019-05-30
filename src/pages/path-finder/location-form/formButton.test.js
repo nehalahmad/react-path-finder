@@ -1,5 +1,5 @@
 import React from "react";
-import FormButton from "./form-button";
+import FormButton from "./formButton";
 import { shallow } from "enzyme";
 
 describe("<FormButton />", () => {

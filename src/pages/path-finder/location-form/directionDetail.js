@@ -4,7 +4,7 @@ import { Alert } from "react-bootstrap";
 import {
   TOTAL_DISTANCE,
   TOTAL_TIME
-} from "../../../../../../config/appConstants";
+} from "../../../config/appConstants";
 
 /**
  * @description: to display information about distance, and also to show reachable message

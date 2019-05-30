@@ -1,6 +1,6 @@
 import React from "react";
 
-import FormButton from "./form-button";
+import FormButton from "./formButton";
 
 /**
  * @description: A wrapper container for form buttons

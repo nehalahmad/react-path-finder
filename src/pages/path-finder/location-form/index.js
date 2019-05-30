@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
 
-import LocationInput from "./components/location-input";
-import DirectionDetail from "./components/direction-detail";
-import ButtonContainer from "./components/button-container";
-import { LOCATION } from "../../../../../config/appConstants";
+import LocationInput from "./locationInput";
+import DirectionDetail from "./directionDetail";
+import ButtonContainer from "./buttonContainer";
+import { LOCATION } from "../../../config/appConstants";
 
-import "./location-form.css";
+import "./locationForm.css";
 
 /**
  * @description: Form container all the input fields
