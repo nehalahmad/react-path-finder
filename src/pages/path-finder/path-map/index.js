@@ -22,6 +22,10 @@ class Map extends Component {
   }
 
   render() {
+    /* TODO: make ErrorBoundary component working */
+    /*if (true) {
+      throw new Error("Something...");
+    }*/
     return (
       <Col sm="8" lg="9" as="main">
         <div ref="mapContainer" className="map-container" />

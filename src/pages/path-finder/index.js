@@ -45,31 +45,31 @@ export default class PathFinder extends Component {
     const { token, message, isLoader, errorMessage, direction } = this.state;
 
     return (
-      <ErrorBoundary>
-        <Container fluid className="App">
-          <Row>
-            <LocationForm
-              submitHandler={this.submitHandler}
-              resetHandler={this._resetApp}
-              resetDirDetailMessage={this.resetDirDetailMessage}
-              submitBtnText={
-                !isLoader && (token || message) ? RESUBMIT_TEXT : SUBMIT_TEXT
-              }
-              setErrorMessage={this.setErrorMessage}
-              {...this.state}
-            />
+      <Container fluid className="App">
+        <Row>
+          <LocationForm
+            submitHandler={this.submitHandler}
+            resetHandler={this._resetApp}
+            resetDirDetailMessage={this.resetDirDetailMessage}
+            submitBtnText={
+              !isLoader && (token || message) ? RESUBMIT_TEXT : SUBMIT_TEXT
+            }
+            setErrorMessage={this.setErrorMessage}
+            {...this.state}
+          />
+          <ErrorBoundary>
             <PathMap
               directions={direction}
               setErrorMessage={this.setErrorMessage}
             />
-            <Loader isLoading={isLoader} />
-            <ModalDialog
-              errorMessage={errorMessage}
-              setErrorMessageHandler={this.setErrorMessage}
-            />
-          </Row>
-        </Container>
-      </ErrorBoundary>
+          </ErrorBoundary>
+          <Loader isLoading={isLoader} />
+          <ModalDialog
+            errorMessage={errorMessage}
+            setErrorMessageHandler={this.setErrorMessage}
+          />
+        </Row>
+      </Container>
     );
   }
 
