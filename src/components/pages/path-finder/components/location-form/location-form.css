@@ -1,0 +1,19 @@
+#mapForm .map-input .input-group-append {
+  cursor: pointer;
+}
+
+#mapForm .btn.btn-reset {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+#mapForm .btn.btn-reset:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+#mapForm .button-container > .btn-reset {
+  margin-left: 20px;
+}

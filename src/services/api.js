@@ -1,4 +1,5 @@
 import axios from "axios";
+import { UNAUTHORISED_LOCATIONS } from "../config/appConstants";
 
 // general setting for making API calls
 const instance = axios.create({
@@ -15,7 +16,7 @@ export const submitDirection = async data => {
     if (result && result.data && result.data.token) {
       return result.data.token;
     } else {
-      throw new Error("Locations couldn't authorized!");
+      throw new Error(UNAUTHORISED_LOCATIONS);
     }
   });
 };
