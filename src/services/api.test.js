@@ -1,5 +1,5 @@
 import { submitDirection, getDirection } from "./api";
-import { SUCCESS } from "../config/apiConstants";
+import { SUCCESS, FAIL, IN_PROGRESS } from "../config/apiConstants";
 
 jest.setTimeout(30000); // overcome the default jest timeout which is 5s
 
@@ -24,6 +24,10 @@ describe("SubmitDirection", () => {
 
           if (directionResponse.status === SUCCESS) {
             console.log(directionResponse);
+          } else if (directionResponse.status === FAIL) {
+            console.log(directionResponse.error);
+          } else if (directionResponse.status === IN_PROGRESS) {
+            console.log("trying to fetch directions again...");
           }
         } catch (error) {
           console.log(error.message);
