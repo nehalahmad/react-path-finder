@@ -8,7 +8,7 @@ window.addEventListener("unhandledrejection", unhandledRejection);
  * @description: Handler erros on window level
  */
 function handleGlobalError(msg) {
-  const {message, filename, lineno, colno, error} = msg;
+  const { message, filename, lineno, colno, error } = msg;
 
   const string = message.toLowerCase();
   const substring = "script error";

@@ -21,9 +21,6 @@ export default class LocationForm extends Component {
       setErrorMessage
     } = this.props;
 
-
-     
-
     return (
       <Col sm="4" lg="3" as="aside">
         <Form
