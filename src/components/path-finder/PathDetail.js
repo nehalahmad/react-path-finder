@@ -7,7 +7,7 @@ import { TOTAL_DISTANCE, TOTAL_TIME } from "../../config/AppConstants";
 /**
  * @description: to display information about distance, and also to show reachable message
  */
-const DirectionDetail = props => {
+const PathDetail = props => {
   const { direction, message } = props;
 
   return (
@@ -35,9 +35,9 @@ const DirectionDetail = props => {
 };
 
 // validate prop types
-DirectionDetail.propTypes = {
+PathDetail.propTypes = {
   message: PropTypes.string,
   direction: PropTypes.object
 };
 
-export default DirectionDetail;
+export default PathDetail;

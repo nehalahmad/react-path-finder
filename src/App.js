@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // import PathFinder component
-import PathFinder from "./components/path-finder";
+import Direction from "./components/path-finder";
 import "./services/GlobalErrorHandler";
 
 /**
@@ -12,6 +12,6 @@ export default class App extends Component {
    * @description: life cycle method
    */
   render() {
-    return <PathFinder ref="main" />;
+    return <Direction ref="main" />;
   }
 }

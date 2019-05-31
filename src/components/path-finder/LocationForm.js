@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
 
 import LocationInput from "./LocationInput";
-import DirectionDetail from "./DirectionDetail";
+import PathDetail from "./PathDetail";
 import ButtonContainer from "./ButtonContainer";
 
 import { LOCATION } from "../../config/AppConstants";
@@ -47,7 +47,7 @@ export default class LocationForm extends Component {
               setErrorMessage={setErrorMessage}
               resetDirDetailMessage={this.resetDirDetailMessage}
             />
-            <DirectionDetail direction={direction} message={message} />
+            <PathDetail direction={direction} message={message} />
             <ButtonContainer
               submitBtnText={submitBtnText}
               isLoader={isLoader}
