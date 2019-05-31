@@ -14,14 +14,17 @@ const DirectionDetail = props => {
     <Fragment>
       {direction && (
         <Fragment>
-          <Alert variant="success" show={!!direction.total_distance}>
-            <strong>{TOTAL_DISTANCE}</strong>
-            {" " + direction.total_distance}
-          </Alert>
-          <Alert variant="success" show={!!direction.total_time}>
-            <strong>{TOTAL_TIME}</strong>
-            {" " + direction.total_time}
-          </Alert>
+          {[
+            { key: TOTAL_DISTANCE, value: direction.total_distance },
+            { key: TOTAL_TIME, value: direction.total_time }
+          ].map(({ key, value }, index) => {
+            return (
+              <Alert variant="success" show={!!value} key={index}>
+                <strong>{key}</strong>
+                {" " + value}
+              </Alert>
+            );
+          })}
         </Fragment>
       )}
       <Alert variant="danger" show={!!message}>
