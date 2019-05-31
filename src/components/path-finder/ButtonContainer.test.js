@@ -1,11 +1,11 @@
 import React from "react";
-import ButtonContainer from "./buttonContainer";
+import ButtonContainer from "./ButtonContainer";
 import { shallow } from "enzyme";
 import {
   SUBMIT_TEXT,
   RESUBMIT_TEXT,
   RESET_TEXT
-} from "../../../config/appConstants";
+} from "../../config/AppConstants";
 
 describe("<ButtonContainer />", () => {
   it("submit button renders", () => {
@@ -25,7 +25,7 @@ describe("<ButtonContainer />", () => {
 
     const btnReset = buttonContainerObj.find("[type='reset']"); // get reset button
     if (btnReset) {
-      expect(btnSubmit.text()).toEqual(RESET_TEXT);
+      expect(btnReset.text()).toEqual(RESET_TEXT);
       btnReset.simulate("click");
       expect(mockCallBack.mock.calls.length).toEqual(0);
     }

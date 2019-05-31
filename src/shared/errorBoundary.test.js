@@ -1,6 +1,7 @@
 import React from "react";
-import ErrorBoundary from "./errorBoundary";
 import { shallow } from "enzyme";
+
+import ErrorBoundary from "./ErrorBoundary";
 
 describe("<ErrorBoundary />", () => {
   it("renders", () => {

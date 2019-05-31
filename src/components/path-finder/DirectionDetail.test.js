@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import DirectionDetail from "./directionDetail";
+import DirectionDetail from "./DirectionDetail";
 
 describe("<DirectionDetail />", () => {
   it("direction detail is rendered", () => {

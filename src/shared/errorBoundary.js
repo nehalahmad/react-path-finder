@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { SOMETHING_WRONG } from "../config/appConstants";
+import { SOMETHING_WRONG } from "../config/AppConstants";
 
 export default class ErrorBoundary extends Component {
   state = { error: null, errorInfo: null };

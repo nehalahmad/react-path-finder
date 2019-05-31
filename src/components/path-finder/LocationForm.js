@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
 
-import LocationInput from "./locationInput";
-import DirectionDetail from "./directionDetail";
-import ButtonContainer from "./buttonContainer";
+import LocationInput from "./LocationInput";
+import DirectionDetail from "./DirectionDetail";
+import ButtonContainer from "./ButtonContainer";
 
-import { LOCATION } from "../../../config/appConstants";
+import { LOCATION } from "../../config/AppConstants";
 
-import "./locationForm.css";
+import "./LocationForm.css";
 
 /**
  * @description: Form container, creating the location finder form

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 // import PathFinder component
-import PathFinder from "./pages/path-finder";
-import "./services/errorHandler";
+import PathFinder from "./components/path-finder";
+import "./services/GlobalErrorHandler";
 
 /**
  * @description: wrapper file to display overall map page UI

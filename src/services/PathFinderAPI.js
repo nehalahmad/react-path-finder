@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UNAUTHORISED_LOCATIONS } from "../config/appConstants";
+import { UNAUTHORISED_LOCATIONS } from "../config/AppConstants";
 
 // general setting for making API calls
 const instance = axios.create({

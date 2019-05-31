@@ -1,4 +1,4 @@
-import * as Utils from "./utils";
+import * as Utils from "./Utils";
 
 describe("Testing util function", () => {
   it("call correctly", () => {

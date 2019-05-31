@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<FormButton /> reset button renders 1`] = `ShallowWrapper {}`;
-
-exports[`<FormButton /> submit button renders 1`] = `ShallowWrapper {}`;
