@@ -1,6 +1,6 @@
 import React from "react";
 
-import './loader.css';
+import "./loader.css";
 
 /**
  * @description: Show loader when APi calls

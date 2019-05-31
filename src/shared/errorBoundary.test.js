@@ -7,7 +7,7 @@ describe("<ErrorBoundary />", () => {
     const ErrorChildObj = () => {
       throw new Error("Something went wrong!");
     };
-    
+
     const ErrorBoundaryObj = shallow(
       <ErrorBoundary>
         <ErrorChildObj />

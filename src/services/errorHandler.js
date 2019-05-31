@@ -7,9 +7,7 @@ window.addEventListener("unhandledrejection", unhandledRejection);
 /**
  * @description: Handler erros on window level
  */
-function handleGlobalError(msg) {
-  const { message, filename, lineno, colno, error } = msg;
-
+function handleGlobalError({ message, filename, lineno, colno, error }) {
   const string = message.toLowerCase();
   const substring = "script error";
   if (string.indexOf(substring) > -1) {
@@ -30,6 +28,6 @@ function handleGlobalError(msg) {
 /**
  * @description: handle global unhandled rejections
  */
-function unhandledRejection(event) {
-  console.log(`unhandled promise rejection: ${event.reason}`);
+function unhandledRejection({ reason }) {
+  console.log(`unhandled promise rejection: ${reason}`);
 }

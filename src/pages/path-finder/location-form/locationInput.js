@@ -8,7 +8,7 @@ import { LOCATION } from "../../../config/appConstants";
 /**
  * @name: InputBox
  * @description: Create Google Auto-Complete of places
- * @param: take input location
+ * @param: input location
  */
 export default class LocationInput extends Component {
   state = { value: "" };
@@ -52,15 +52,15 @@ export default class LocationInput extends Component {
   /**
    * @description: set input value
    */
-  _setValue = value => {
+  setValue = value => {
     this.setState({ value });
   };
 
   /**
    * @description: get input value
    */
-  _getValue = () => {
-    this._setValue(this.refs.formInput.value);
+  getValue = () => {
+    this.setValue(this.refs.formInput.value);
     return this.refs.formInput.value;
   };
 
@@ -76,6 +76,9 @@ export default class LocationInput extends Component {
     }
   };
 
+  /**
+   * @description: if location input went blank, reset the form then
+   */
   _resetFieldHandler = () => {
     this.setState({ value: "" });
     this.refs.formInput.focus();
@@ -83,6 +86,7 @@ export default class LocationInput extends Component {
   };
 }
 
+// validate the prop types
 LocationInput.propTypes = {
   title: PropTypes.string,
   placeholder: PropTypes.string,

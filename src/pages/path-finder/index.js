@@ -50,7 +50,6 @@ export default class PathFinder extends Component {
           <LocationForm
             submitHandler={this.submitHandler}
             resetHandler={this._resetApp}
-            resetDirDetailMessage={this.resetDirDetailMessage}
             submitBtnText={
               !isLoader && (token || message) ? RESUBMIT_TEXT : SUBMIT_TEXT
             }
@@ -119,13 +118,6 @@ export default class PathFinder extends Component {
   };
 
   /**
-   * @description: reset reachable message in form
-   */
-  resetDirDetailMessage = () => {
-    this.setState({ message: "" });
-  };
-
-  /**
    * @description: Handle final response in case of success, failure and in-progress
    */
   _handleDirectionResponse = direction => {
@@ -138,9 +130,9 @@ export default class PathFinder extends Component {
         });
         break;
       case IN_PROGRESS:
-        let counterValue = utils.countFn();
-        if (counterValue <= NUMBER_ATTEMPTS) {
-          this._getDirection(); // get data in case of any error
+        let triedAttempt = utils.countFn();
+        if (triedAttempt <= NUMBER_ATTEMPTS) {
+          this._getDirection(); // try to fetch direction data if it fails due to any reason
         }
         break;
       case FAIL:

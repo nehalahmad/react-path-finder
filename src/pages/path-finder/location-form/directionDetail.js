@@ -1,10 +1,8 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Alert } from "react-bootstrap";
-import {
-  TOTAL_DISTANCE,
-  TOTAL_TIME
-} from "../../../config/appConstants";
+
+import { TOTAL_DISTANCE, TOTAL_TIME } from "../../../config/appConstants";
 
 /**
  * @description: to display information about distance, and also to show reachable message
@@ -33,6 +31,7 @@ const DirectionDetail = props => {
   );
 };
 
+// validate prop types
 DirectionDetail.propTypes = {
   message: PropTypes.string,
   direction: PropTypes.object
