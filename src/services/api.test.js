@@ -18,21 +18,15 @@ describe("SubmitDirection", () => {
     try {
       let tokenResponse = await submitDirection(data);
 
-      it("getting direction", async () => {
-        try {
-          let directionResponse = await getDirection(tokenResponse.token);
+      let directionResponse = await getDirection(tokenResponse.token);
 
-          if (directionResponse.status === SUCCESS) {
-            console.log(directionResponse);
-          } else if (directionResponse.status === FAIL) {
-            console.log(directionResponse.error);
-          } else if (directionResponse.status === IN_PROGRESS) {
-            console.log("trying to fetch directions again...");
-          }
-        } catch (error) {
-          console.log(error.message);
-        }
-      });
+      if (directionResponse.status === SUCCESS) {
+        console.log(directionResponse);
+      } else if (directionResponse.status === FAIL) {
+        console.log(directionResponse.error);
+      } else if (directionResponse.status === IN_PROGRESS) {
+        console.log("trying to fetch directions again...");
+      }
     } catch (error) {
       console.log(error.message);
     }
