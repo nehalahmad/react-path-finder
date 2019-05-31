@@ -1,5 +1,5 @@
 import React from "react";
-import ModalDialog from ".";
+import ModalDialog from "./ModalDialog";
 import { shallow } from "enzyme";
 
 describe("<ModalDialog />", () => {

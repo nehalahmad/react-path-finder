@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 
 // import custom components
-import ErrorBoundary from "./../../shared/ErrorBoundary";
+import ErrorBoundary from "./../../common/ErrorBoundary";
 import LocationForm from "./LocationForm";
-import Loader from "../../shared/loader";
+import Loader from "../../common/Loader";
 import PathMap from "./PathMap";
-import ModalDialog from "../../shared/modal-dialog";
+import ModalDialog from "../../common/ModalDialog";
 
 // import api and utils
 import * as API from "../../services/PathFinderAPI";
