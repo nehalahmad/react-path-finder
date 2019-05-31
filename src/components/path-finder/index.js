@@ -9,7 +9,7 @@ import PathMap from "./PathMap";
 import ModalDialog from "../../common/ModalDialog";
 
 // import api and utils
-import * as API from "../../services/PathFinderAPI";
+import * as API from "./PathFinderAPI";
 import * as utils from "../../services/Utils";
 
 // import constants
