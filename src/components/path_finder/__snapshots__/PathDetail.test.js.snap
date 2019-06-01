@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PathDetail /> direction detail is rendered 1`] = `ShallowWrapper {}`;
+
+exports[`<PathDetail /> direction detail is rendered 2`] = `ShallowWrapper {}`;

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ModalDialog /> Render modal with a message 1`] = `ShallowWrapper {}`;
+
+exports[`<ModalDialog /> Render modal without a message 1`] = `ShallowWrapper {}`;
+
+exports[`<ModalDialog /> it'll close the modal message 1`] = `ShallowWrapper {}`;
