@@ -22,6 +22,7 @@ export default class LocationInput extends Component {
 
   render() {
     const { title, placeholder, id, autoFocus } = this.props;
+    const { value } = this.state;
 
     return (
       <Form.Group controlId={id}>
@@ -30,14 +31,14 @@ export default class LocationInput extends Component {
           <Form.Control
             type="text"
             ref="formInput"
-            value={this.state.value}
+            value={value}
             required
             onChange={e => this.setState({ value: e.target.value })}
             placeholder={placeholder}
             autoFocus={autoFocus}
             tabIndex={autoFocus ? 1 : 2}
           />
-          {this.state.value && (
+          {value && (
             <InputGroup.Append>
               <InputGroup.Text onClick={this._resetFieldHandler}>
                 X

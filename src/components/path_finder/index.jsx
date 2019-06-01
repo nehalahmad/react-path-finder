@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 
 // import custom components
-import ErrorBoundary from "./../../common/ErrorBoundary";
+import ErrorBoundary from "../../common/ErrorBoundary";
 import LocationForm from "./LocationForm";
 import Loader from "../../common/Loader";
 import PathMap from "./PathMap";
