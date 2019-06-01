@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<ButtonContainer /> resubmit button renders 1`] = `ShallowWrapper {}`;
-
-exports[`<ButtonContainer /> submit button renders 1`] = `ShallowWrapper {}`;
