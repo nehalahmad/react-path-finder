@@ -10,9 +10,7 @@ describe("<PathDetail />", () => {
       total_time: 500
     };
 
-    const PathDetailComp = shallow(
-      <PathDetail direction={direction} />
-    );
+    const PathDetailComp = shallow(<PathDetail direction={direction} />);
     expect(PathDetailComp).toMatchSnapshot();
   });
 
