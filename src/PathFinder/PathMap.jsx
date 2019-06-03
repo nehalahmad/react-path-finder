@@ -86,7 +86,7 @@ class Map extends Component {
    * @description: life cycle method
    * @param {*} props
    * @param {*} state
-   * @param {*} snapShot
+   * @param {*} snapShot, this will be provided as a third parameter, if component continas method getSnapshotBeforeUpdate
    */
   componentDidUpdate(props, state, snapShot) {
     try {
