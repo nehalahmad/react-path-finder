@@ -98,5 +98,6 @@ LocationInput.defaultProps = {
   maps,
   title: LOCATION.ONE.TITLE,
   placeholder: LOCATION.ONE.PLACEHOLDER,
-  autoFocus: false
+  autoFocus: false,
+  id: "startLoc"
 };

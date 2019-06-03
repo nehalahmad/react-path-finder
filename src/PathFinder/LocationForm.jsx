@@ -34,7 +34,6 @@ export default class LocationForm extends Component {
             <legend>Location input form</legend>
             <LocationInput
               ref="startLoc"
-              id="startLoc"
               autoFocus
               setErrorMessage={setErrorMessage}
               resetDirDetailMessage={this.resetDirDetailMessage}
