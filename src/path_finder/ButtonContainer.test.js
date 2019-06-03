@@ -5,7 +5,7 @@ import {
   SUBMIT_TEXT,
   RESUBMIT_TEXT,
   RESET_TEXT
-} from "../../config/AppConstants";
+} from "../config/AppConstants";
 
 describe("<ButtonContainer />", () => {
   it("submit button renders", () => {

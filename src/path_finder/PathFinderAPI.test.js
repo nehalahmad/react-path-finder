@@ -1,5 +1,5 @@
 import { submitDirection, getDirection } from "./PathFinderAPI";
-import { SUCCESS, FAIL, IN_PROGRESS } from "../../config/ApiConstants";
+import { SUCCESS, FAIL, IN_PROGRESS } from "./../config/ApiConstants";
 
 jest.setTimeout(30000); // overcome the default jest timeout which is 5s
 

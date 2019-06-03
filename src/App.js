@@ -1,17 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
-// import PathFinder component
-import Direction from "./path_finder";
-import "./services/GlobalErrorHandler";
+import PathFinder from "./path_finder"; // import PathFinder component
+import "./services/GlobalErrorHandler"; // import global error handler
 
 /**
- * @description: wrapper file to display overall map page UI
+ * @description: wrapper file to contain path finder component
  */
-export default class App extends Component {
-  /**
-   * @description: life cycle method
-   */
-  render() {
-    return <Direction ref="main" />;
-  }
-}
+const App = () => {
+  return <PathFinder ref="main" />;
+};
+
+export default App;
