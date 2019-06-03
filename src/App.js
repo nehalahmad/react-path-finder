@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // import PathFinder component
-import Direction from "./components/path_finder";
+import Direction from "./path_finder";
 import "./services/GlobalErrorHandler";
 
 /**

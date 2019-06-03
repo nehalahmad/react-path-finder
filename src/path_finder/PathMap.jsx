@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Col } from "react-bootstrap";
 
-import maps from "../../services/GoogleMap";
-import { ERROR_DIRECTION_SERVICE } from "../../config/AppConstants";
+import maps from "../services/GoogleMap";
+import { ERROR_DIRECTION_SERVICE } from "../config/AppConstants";
 
 import "./PathMap.css";
 

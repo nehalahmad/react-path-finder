@@ -5,7 +5,7 @@ import LocationInput from "./LocationInput";
 import PathDetail from "./PathDetail";
 import ButtonContainer from "./ButtonContainer";
 
-import { LOCATION } from "../../config/AppConstants";
+import { LOCATION } from "../config/AppConstants";
 
 import "./LocationForm.css";
 
