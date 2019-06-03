@@ -7,7 +7,7 @@ import "./services/GlobalErrorHandler"; // import global error handler
  * @description: wrapper file to contain path finder component
  */
 const App = () => {
-  return <PathFinder ref="main" />;
+  return <PathFinder />;
 };
 
 export default App;
