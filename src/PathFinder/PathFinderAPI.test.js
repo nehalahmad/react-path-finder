@@ -1,10 +1,6 @@
 import { getToken, getDirection } from "./PathFinderAPI";
 import PFAPIResponse from "../../__fixtures__/PathFinderApiResponse";
-
-const mockAxios = {
-  get: jest.fn(() => Promise.resolve({ data: {} })),
-  post: jest.fn(() => Promise.resolve({ data: {} }))
-};
+import MockAxios from "./../../__mocks__/MockAxios";
 
 jest.setTimeout(30000); // overcome the default jest timeout which is 5s
 
@@ -25,7 +21,7 @@ describe("Testing API", () => {
 
   describe("token", () => {
     it("error getting token", async () => {
-      mockAxios.get.mockImplementationOnce(() => PFAPIResponse.exception);
+      MockAxios.get.mockImplementationOnce(() => PFAPIResponse.exception);
 
       try {
         const tokenResponse = getToken(direction);
@@ -36,7 +32,7 @@ describe("Testing API", () => {
     });
 
     it("getting token", async () => {
-      mockAxios.get.mockImplementationOnce(() => PFAPIResponse.tokenResponse);
+      MockAxios.get.mockImplementationOnce(() => PFAPIResponse.tokenResponse);
 
       try {
         const tokenResponse = getToken(direction);
@@ -49,7 +45,7 @@ describe("Testing API", () => {
 
   describe("direction", () => {
     it("getting direction in progress", () => {
-      mockAxios.post.mockImplementationOnce(() => PFAPIResponse.inProgress);
+      MockAxios.post.mockImplementationOnce(() => PFAPIResponse.inProgress);
 
       try {
         const directionResponse = getDirection(token);
@@ -60,7 +56,7 @@ describe("Testing API", () => {
     });
 
     it("location is not accessible", () => {
-      mockAxios.post.mockImplementationOnce(
+      MockAxios.post.mockImplementationOnce(
         () => PFAPIResponse.locationNotAccessible
       );
 
@@ -73,7 +69,7 @@ describe("Testing API", () => {
     });
 
     it("getting direction", () => {
-      mockAxios.post.mockImplementationOnce(() => PFAPIResponse.success);
+      MockAxios.post.mockImplementationOnce(() => PFAPIResponse.success);
 
       try {
         const directionResponse = getDirection(token);
