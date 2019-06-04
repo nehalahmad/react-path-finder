@@ -1,6 +1,6 @@
 import { getToken, getDirection } from "./PathFinderAPI";
-import PFAPIResponse from "../../__fixtures__/PathFinderApiResponse";
-import MockAxios from "./../../__mocks__/MockAxios";
+import MockResponse from "../../__fixtures__/pathFinderMockApiResponse";
+import MockAxios from "../../__mocks__/mockAxios";
 
 jest.setTimeout(30000); // overcome the default jest timeout which is 5s
 
@@ -21,22 +21,22 @@ describe("Testing API", () => {
 
   describe("token", () => {
     it("error getting token", async () => {
-      MockAxios.get.mockImplementationOnce(() => PFAPIResponse.exception);
+      MockAxios.get.mockImplementationOnce(() => MockResponse.exception);
 
       try {
         const tokenResponse = getToken(direction);
-        expect(tokenResponse).toEqual(PFAPIResponse.exception);
+        expect(tokenResponse).toEqual(MockResponse.exception);
       } catch (error) {
         console.log(error.message);
       }
     });
 
     it("getting token", async () => {
-      MockAxios.get.mockImplementationOnce(() => PFAPIResponse.tokenResponse);
+      MockAxios.get.mockImplementationOnce(() => MockResponse.tokenResponse);
 
       try {
         const tokenResponse = getToken(direction);
-        expect(tokenResponse).toEqual(PFAPIResponse.tokenResponse);
+        expect(tokenResponse).toEqual(MockResponse.tokenResponse);
       } catch (error) {
         console.log(error.message);
       }
@@ -45,11 +45,11 @@ describe("Testing API", () => {
 
   describe("direction", () => {
     it("getting direction in progress", () => {
-      MockAxios.post.mockImplementationOnce(() => PFAPIResponse.inProgress);
+      MockAxios.post.mockImplementationOnce(() => MockResponse.inProgress);
 
       try {
         const directionResponse = getDirection(token);
-        expect(directionResponse).toEqual(PFAPIResponse.inProgress);
+        expect(directionResponse).toEqual(MockResponse.inProgress);
       } catch (error) {
         console.log(error.message);
       }
@@ -57,23 +57,23 @@ describe("Testing API", () => {
 
     it("location is not accessible", () => {
       MockAxios.post.mockImplementationOnce(
-        () => PFAPIResponse.locationNotAccessible
+        () => MockResponse.locationNotAccessible
       );
 
       try {
         const directionResponse = getDirection(token);
-        expect(directionResponse).toEqual(PFAPIResponse.locationNotAccessible);
+        expect(directionResponse).toEqual(MockResponse.locationNotAccessible);
       } catch (error) {
         console.log(error.message);
       }
     });
 
     it("getting direction", () => {
-      MockAxios.post.mockImplementationOnce(() => PFAPIResponse.success);
+      MockAxios.post.mockImplementationOnce(() => MockResponse.success);
 
       try {
         const directionResponse = getDirection(token);
-        expect(directionResponse).toEqual(PFAPIResponse.success);
+        expect(directionResponse).toEqual(MockResponse.success);
       } catch (error) {
         console.log(error.message);
       }
