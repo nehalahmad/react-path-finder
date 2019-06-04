@@ -1,6 +1,6 @@
 import { getToken, getDirection } from "./PathFinderAPI";
-import MockResponse from "../../__fixtures__/pathFinderMockApiResponse";
-import MockAxios from "../../__mocks__/mockAxios";
+import MockResponse from "../../__fixtures__/PathFinderMockApiResponse";
+import MockAxios from "../../__mocks__/MockAxios";
 
 jest.setTimeout(30000); // overcome the default jest timeout which is 5s
 
