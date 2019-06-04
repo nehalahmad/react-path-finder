@@ -78,7 +78,7 @@ export default class PathFinder extends Component {
     try {
       this.setState({ isLoader: true });
 
-      const token = await API.submitDirection(formData);
+      const token = await API.getToken(formData);
       this.setState({ token }, this._getDirection);
     } catch (error) {
       this._resetApp({ errorMessage: error.message, isLoader: false });

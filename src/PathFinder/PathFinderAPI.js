@@ -11,7 +11,7 @@ const instance = axios.create({
  * @description: Make API calls to get token
  * @param: Locations object
  */
-export const submitDirection = async data => {
+export const getToken = async data => {
   return instance.post(process.env.REACT_APP_ROUTE_API, data).then(result => {
     if (result && result.data && result.data.token) {
       return result.data.token;
