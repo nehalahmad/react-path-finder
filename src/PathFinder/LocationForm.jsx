@@ -1,3 +1,4 @@
+// PathFinder/LocationForm.jsx
 import React, { Component } from "react";
 import { Form, Col } from "react-bootstrap";
 
@@ -7,10 +8,11 @@ import ButtonContainer from "./ButtonContainer";
 
 import { LOCATION } from "../config/AppConstants";
 
+// css file
 import "./LocationForm.css";
 
 /**
- * @description: Form container, creating the location finder form
+ * @description: Form container, creating the locations input form
  */
 export default class LocationForm extends Component {
   render() {
@@ -64,7 +66,7 @@ export default class LocationForm extends Component {
   _handleOnSubmit = e => {
     e.preventDefault();
 
-    this.props.submitHandler({
+    this.props.handleOnSubmit({
       from: this.refs.startLoc.getValue(),
       to: this.refs.dropOffLoc.getValue()
     });
@@ -81,7 +83,7 @@ export default class LocationForm extends Component {
   };
 
   /**
-   * @description: to remove non-reachable location message from from if both the location inputs are blank
+   * @description: to remove non-reachable location message from from if both the location inputs went blank
    */
   resetDirDetailMessage = () => {
     if (

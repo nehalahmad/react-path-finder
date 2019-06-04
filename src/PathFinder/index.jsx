@@ -1,3 +1,4 @@
+// PathFinder/index.js
 import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 
@@ -46,7 +47,7 @@ export default class PathFinder extends Component {
       <Container fluid className="App">
         <Row>
           <LocationForm
-            submitHandler={this.submitHandler}
+            handleOnSubmit={this.handleOnSubmit}
             resetHandler={this._resetApp}
             submitBtnText={
               !isLoader && (token || message) ? RESUBMIT_TEXT : SUBMIT_TEXT
@@ -73,7 +74,7 @@ export default class PathFinder extends Component {
   /**
    * @description: Form submit handler, to get token first and then call another function to get direction
    */
-  submitHandler = async formData => {
+  handleOnSubmit = async formData => {
     try {
       this.setState({ isLoader: true });
 

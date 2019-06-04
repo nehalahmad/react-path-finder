@@ -32,6 +32,7 @@ describe("<ButtonContainer />", () => {
   });
 
   it("resubmit button renders", () => {
+    // resubmit button
     const buttonContainerObj = shallow(
       <ButtonContainer submitBtnText={RESUBMIT_TEXT} />
     );

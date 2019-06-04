@@ -1,5 +1,6 @@
 import { submitDirection, getDirection } from "./PathFinderAPI";
 import { SUCCESS, FAIL, IN_PROGRESS } from "./../config/ApiConstants";
+import { SOMETHING_WRONG } from "../config/AppConstants";
 
 jest.setTimeout(30000); // overcome the default jest timeout which is 5s
 
@@ -26,6 +27,8 @@ describe("SubmitDirection", () => {
         console.log(directionResponse.error);
       } else if (directionResponse.status === IN_PROGRESS) {
         console.log("trying to fetch directions again...");
+      } else {
+        throw new Error(SOMETHING_WRONG);
       }
     } catch (error) {
       console.log(error.message);

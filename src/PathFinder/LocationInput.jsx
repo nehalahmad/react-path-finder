@@ -1,8 +1,10 @@
+// PathFinder/LocationInput.jsx
 import React, { Component } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 import maps from "../services/GoogleMap";
+
 import { LOCATION } from "../config/AppConstants";
 
 /**

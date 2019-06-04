@@ -1,3 +1,4 @@
+// services/GoogleMap.js
 import GoogleMapsLoader from "google-maps";
 
 /**
@@ -19,6 +20,9 @@ const loadMap = () =>
     }
   });
 
+/**
+ * @description: get google map and return promise
+ */
 const maps = async () => {
   const google = await loadMap();
   return google.maps;

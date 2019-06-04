@@ -1,3 +1,4 @@
+// App.jsx
 import React from "react";
 
 import PathFinder from "./PathFinder"; // import PathFinder component

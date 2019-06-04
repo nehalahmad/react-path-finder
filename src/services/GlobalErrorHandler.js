@@ -1,4 +1,5 @@
 /**
+ * services/GlobalErrorHandler.js
  * A file to handle errors global level
  */
 window.addEventListener("error", handleGlobalError);

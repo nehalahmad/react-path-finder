@@ -1,9 +1,12 @@
+// PathFinder/PathMap.jsx
 import React, { Component } from "react";
 import { Col } from "react-bootstrap";
 
 import maps from "../services/GoogleMap";
+
 import { ERROR_DIRECTION_SERVICE } from "../config/AppConstants";
 
+// css
 import "./PathMap.css";
 
 /**
@@ -45,6 +48,9 @@ class Map extends Component {
     }
   };
 
+  /**
+   * @description: create array of map object
+   */
   _preparePositionsFromPath = path => {
     return path.map(([lat, lng]) => new this.maps.LatLng(lat, lng));
   };
@@ -103,7 +109,7 @@ class Map extends Component {
   }
 
   /**
-   * @description: life cycle method
+   * @description: life cycle method, render Map if directions changed
    * @param {*} nextProps
    */
   shouldComponentUpdate(nextProps) {

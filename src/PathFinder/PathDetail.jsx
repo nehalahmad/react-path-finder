@@ -1,3 +1,4 @@
+// PathFinder/PathDetail.jsx
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Alert } from "react-bootstrap";
@@ -5,7 +6,7 @@ import { Alert } from "react-bootstrap";
 import { TOTAL_DISTANCE, TOTAL_TIME } from "../config/AppConstants";
 
 /**
- * @description: to display information about distance, and also to show reachable message
+ * @description: to display information about distance, and also to show API response message
  */
 const PathDetail = props => {
   const { direction, message } = props;
