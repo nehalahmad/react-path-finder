@@ -1,0 +1,12 @@
+/**
+ * App level CSS
+ */
+ .App {
+  margin-top: 15px; margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 767px) {
+  .App aside {
+    margin-bottom: 20px;
+  }
+}
