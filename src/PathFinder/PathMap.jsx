@@ -21,7 +21,7 @@ class Map extends Component {
    * @description: life cycle method
    */
   componentDidMount() {
-    this._initMap();
+    this.initMap();
   }
 
   render() {
@@ -35,7 +35,7 @@ class Map extends Component {
   /**
    * @description: initialize map
    */
-  _initMap = async () => {
+  initMap = async () => {
     try {
       this.maps = await this.props.maps();
 
@@ -51,20 +51,20 @@ class Map extends Component {
   /**
    * @description: create array of map object
    */
-  _preparePositionsFromPath = path => {
+  preparePositionsFromPath = path => {
     return path.map(([lat, lng]) => new this.maps.LatLng(lat, lng));
   };
 
   /**
    * @description: show direction on map based upon input location values
    */
-  _showDirections = ({ path }) => {
+  showDirections = ({ path }) => {
     const directionsService = new this.maps.DirectionsService();
     const directionsRenderer = new this.maps.DirectionsRenderer();
 
     directionsRenderer.setMap(this.map);
 
-    const positions = this._preparePositionsFromPath(path);
+    const positions = this.preparePositionsFromPath(path);
     const waypoints = positions
       .slice(1, positions.length - 1)
       .map(location => ({ location, stopover: false }));
@@ -98,9 +98,9 @@ class Map extends Component {
     try {
       if (snapShot) {
         if (snapShot === "RESET_MAP") {
-          this._initMap();
+          this.initMap();
         } else {
-          this._showDirections(snapShot);
+          this.showDirections(snapShot);
         }
       }
     } catch (error) {

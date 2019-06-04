@@ -48,7 +48,7 @@ export default class PathFinder extends Component {
         <Row>
           <LocationForm
             handleOnSubmit={this.handleOnSubmit}
-            resetHandler={this._resetApp}
+            resetHandler={this.resetApp}
             submitBtnText={
               !isLoader && (token || message) ? RESUBMIT_TEXT : SUBMIT_TEXT
             }
@@ -79,9 +79,9 @@ export default class PathFinder extends Component {
       this.setState({ isLoader: true });
 
       const token = await API.getToken(formData);
-      this.setState({ token }, this._getDirection);
+      this.setState({ token }, this.getDirection);
     } catch (error) {
-      this._resetApp({ errorMessage: error.message, isLoader: false });
+      this.resetApp({ errorMessage: error.message, isLoader: false });
     }
   };
 
@@ -89,16 +89,16 @@ export default class PathFinder extends Component {
    * @description: Make API call to get direction
    * @param: token
    */
-  _getDirection = async () => {
+  getDirection = async () => {
     try {
       const direction = await API.getDirection(this.state.token);
       if (direction) {
-        this._handleDirectionResponse(direction);
+        this.handleDirectionResponse(direction);
       } else {
         throw new Error(DIRECTION_NOT_FOUND);
       }
     } catch (error) {
-      this._resetApp({ errorMessage: error.message, isLoader: false });
+      this.resetApp({ errorMessage: error.message, isLoader: false });
     }
   };
 
@@ -112,14 +112,14 @@ export default class PathFinder extends Component {
   /**
    * @description: Reset app state
    */
-  _resetApp = (stateObj = {}) => {
+  resetApp = (stateObj = {}) => {
     this.setState({ direction: null, token: null, message: "", ...stateObj });
   };
 
   /**
    * @description: Handle final response in case of success, failure and in-progress
    */
-  _handleDirectionResponse = direction => {
+  handleDirectionResponse = direction => {
     switch (direction.data.status) {
       case SUCCESS:
         this.setState({
@@ -131,14 +131,14 @@ export default class PathFinder extends Component {
       case IN_PROGRESS:
         let triedAttempt = utils.countFn();
         if (triedAttempt <= NUMBER_ATTEMPTS) {
-          this._getDirection(); // try to fetch direction data if it fails due to any reason
+          this.getDirection(); // try to fetch direction data if it fails due to any reason
         }
         break;
       case FAIL:
-        this._resetApp({ message: direction.data.error, isLoader: false });
+        this.resetApp({ message: direction.data.error, isLoader: false });
         break;
       default:
-        this._resetApp({ isLoader: false });
+        this.resetApp({ isLoader: false });
         throw new Error(SOMETHING_WRONG);
     }
   };

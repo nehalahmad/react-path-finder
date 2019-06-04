@@ -19,7 +19,7 @@ export default class LocationInput extends Component {
    * @description: life cycle method
    */
   componentDidMount() {
-    this._autoComplete();
+    this.autoComplete();
   }
 
   render() {
@@ -42,7 +42,7 @@ export default class LocationInput extends Component {
           />
           {value && (
             <InputGroup.Append>
-              <InputGroup.Text onClick={this._resetFieldHandler}>
+              <InputGroup.Text onClick={this.resetFieldHandler}>
                 X
               </InputGroup.Text>
             </InputGroup.Append>
@@ -70,7 +70,7 @@ export default class LocationInput extends Component {
   /**
    * @description: Autucomplete input fields based upon input location
    */
-  _autoComplete = async () => {
+  autoComplete = async () => {
     try {
       const maps = await this.props.maps();
       new maps.places.Autocomplete(this.refs.formInput);
@@ -82,7 +82,7 @@ export default class LocationInput extends Component {
   /**
    * @description: if location input went blank, reset the form then
    */
-  _resetFieldHandler = () => {
+  resetFieldHandler = () => {
     this.setState({ value: "" });
     this.refs.formInput.focus();
     this.props.resetDirDetailMessage();

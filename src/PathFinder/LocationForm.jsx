@@ -28,8 +28,8 @@ export default class LocationForm extends Component {
       <Col sm="4" lg="3" as="aside">
         <Form
           name="locationForm"
-          onSubmit={this._handleOnSubmit}
-          onReset={this._handleOnReset}
+          onSubmit={this.handleOnSubmit}
+          onReset={this.handleOnReset}
           id="mapForm"
         >
           <fieldset>
@@ -63,7 +63,7 @@ export default class LocationForm extends Component {
    * @name: Form submit handler
    * @description: on submit will set from location and to location
    */
-  _handleOnSubmit = e => {
+  handleOnSubmit = e => {
     e.preventDefault();
 
     this.props.handleOnSubmit({
@@ -76,7 +76,7 @@ export default class LocationForm extends Component {
    * @name: Form on reset handler
    * @description: Will reset form inputs and some state as well
    */
-  _handleOnReset = () => {
+  handleOnReset = () => {
     this.refs.startLoc.setValue("");
     this.refs.dropOffLoc.setValue("");
     this.props.resetHandler();
