@@ -1,3 +1,4 @@
+// config/AppConstants.js
 export const SUBMIT_TEXT = "Submit";
 export const RESUBMIT_TEXT = "Re-Submit";
 export const RESET_TEXT = "Reset";
@@ -17,3 +18,5 @@ export const ERROR_DIRECTION_SERVICE = "Error in direction service response";
 export const UNAUTHORISED_LOCATIONS = "Locations couldn't authorized!";
 export const TOTAL_DISTANCE = "Total distance:";
 export const TOTAL_TIME = "Total time:";
+
+export const ERROR_TITLE = "Error";

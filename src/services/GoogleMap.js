@@ -1,11 +1,11 @@
 // services/GoogleMap.js
-import GoogleMapsLoader from 'google-maps';
+import GoogleMapsLoader from "google-maps";
 
 /**
  * @description setting google map
  */
 GoogleMapsLoader.KEY = process.env.REACT_APP_GOOGLE_API_KEY;
-GoogleMapsLoader.LIBRARIES = ['geometry', 'places'];
+GoogleMapsLoader.LIBRARIES = ["geometry", "places"];
 
 let google;
 const loadMap = () =>

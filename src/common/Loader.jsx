@@ -1,3 +1,4 @@
+// common/Loader.jsx
 import React from "react";
 
 import "./Loader.css";

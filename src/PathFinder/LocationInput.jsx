@@ -93,7 +93,9 @@ export default class LocationInput extends Component {
 LocationInput.propTypes = {
   title: PropTypes.string,
   placeholder: PropTypes.string,
-  autoFocus: PropTypes.bool
+  autoFocus: PropTypes.bool,
+  setErrorMessage: PropTypes.func.isRequired,
+  resetDirDetailMessage: PropTypes.func.isRequired
 };
 
 LocationInput.defaultProps = {

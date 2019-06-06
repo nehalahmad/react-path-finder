@@ -8,7 +8,7 @@ import ButtonContainer from "./ButtonContainer";
 
 import { LOCATION } from "../config/AppConstants";
 
-// css file
+// css
 import "./LocationForm.css";
 
 /**

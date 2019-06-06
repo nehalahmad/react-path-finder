@@ -1,9 +1,8 @@
 import * as Utils from "./Utils";
 
-describe("Testing util function", () => {
-  it("call correctly", () => {
+describe("Util", () => {
+  it("return correct result", () => {
     const counter = Utils.countFn();
     expect(counter).toEqual(1);
   });
 });
-

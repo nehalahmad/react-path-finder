@@ -1,3 +1,4 @@
+// common/ErrorBoundary.jsx
 import React, { Component } from "react";
 
 import { SOMETHING_WRONG } from "../config/AppConstants";

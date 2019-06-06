@@ -24,8 +24,8 @@ const ButtonContainer = props => {
 
 // validate prop types
 ButtonContainer.propTypes = {
-  isLoader: PropTypes.bool,
-  submitBtnText: PropTypes.string
+  isLoader: PropTypes.bool.isRequired,
+  submitBtnText: PropTypes.string.isRequired
 };
 
 export default ButtonContainer;
