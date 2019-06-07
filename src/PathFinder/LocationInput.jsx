@@ -57,7 +57,7 @@ export default class LocationInput extends Component {
    */
   set value(value) {
     this.setState({ value });
-  };
+  }
 
   /**
    * @description: get input value
@@ -65,7 +65,7 @@ export default class LocationInput extends Component {
   get value() {
     this.value = this.refs.formInput.value;
     return this.refs.formInput.value;
-  };
+  }
 
   /**
    * @description: Autucomplete input fields based upon input location

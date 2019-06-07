@@ -24,7 +24,7 @@ export const getToken = async data => {
 
 /**
  *
- * @param {*} token
+ * @param token
  */
 export const getDirection = async token => {
   return instance.get(`${process.env.REACT_APP_ROUTE_API}/${token}`);

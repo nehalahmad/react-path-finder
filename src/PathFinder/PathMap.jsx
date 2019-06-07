@@ -90,9 +90,9 @@ class Map extends Component {
 
   /**
    * @description: life cycle method
-   * @param {*} props
-   * @param {*} state
-   * @param {*} snapShot, this will be provided as a third parameter, if component continas method getSnapshotBeforeUpdate
+   * @param props
+   * @param state
+   * @param snapShot, this will be provided as a third parameter, if component continas method getSnapshotBeforeUpdate
    */
   componentDidUpdate(props, state, snapShot) {
     try {
@@ -110,7 +110,7 @@ class Map extends Component {
 
   /**
    * @description: life cycle method, render Map if directions changed
-   * @param {*} nextProps
+   * @param nextProps
    */
   shouldComponentUpdate(nextProps) {
     const { directions } = this.props;
@@ -137,7 +137,7 @@ class Map extends Component {
 
   /**
    * @description life cycle method
-   * @param {*} prevProps
+   * @param prevProps
    */
   getSnapshotBeforeUpdate(prevProps) {
     const { directions } = this.props;
