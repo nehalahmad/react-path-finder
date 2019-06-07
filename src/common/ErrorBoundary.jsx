@@ -25,7 +25,7 @@ export default class ErrorBoundary extends Component {
         <div>
           <h2>{SOMETHING_WRONG}</h2>
           <details className="errorDetails">
-            <div>{error && error.toString()}</div>
+            (error && <div>{error.toString()}</div>)
             <div>{errorInfo.componentStack}</div>
           </details>
         </div>
