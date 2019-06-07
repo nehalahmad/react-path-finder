@@ -55,15 +55,15 @@ export default class LocationInput extends Component {
   /**
    * @description: set input value
    */
-  setValue = value => {
+  set value(value) {
     this.setState({ value });
   };
 
   /**
    * @description: get input value
    */
-  getValue = () => {
-    this.setValue(this.refs.formInput.value);
+  get value() {
+    this.value = this.refs.formInput.value;
     return this.refs.formInput.value;
   };
 

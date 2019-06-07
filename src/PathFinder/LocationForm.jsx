@@ -67,8 +67,8 @@ export default class LocationForm extends Component {
     e.preventDefault();
 
     this.props.handleOnSubmit({
-      from: this.refs.startLoc.getValue(),
-      to: this.refs.dropOffLoc.getValue()
+      from: this.refs.startLoc.value,
+      to: this.refs.dropOffLoc.value
     });
   };
 
@@ -77,8 +77,8 @@ export default class LocationForm extends Component {
    * @description: Will reset form inputs and some state as well
    */
   handleOnReset = () => {
-    this.refs.startLoc.setValue("");
-    this.refs.dropOffLoc.setValue("");
+    this.refs.startLoc.value = "";
+    this.refs.dropOffLoc.value = "";
     this.props.resetHandler();
   };
 
