@@ -3,17 +3,17 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import { ERROR_TITLE } from "../config/AppConstants";
 
-export default props => (
+export default ({ errorMessage, setErrorMessageHandler }) => (
   <Modal
-    show={!!props.errorMessage}
+    show={!!errorMessage}
     centered
-    onHide={() => props.setErrorMessageHandler("")}
+    onHide={() => setErrorMessageHandler("")}
   >
     <Modal.Header closeButton>
       <Modal.Title>{ERROR_TITLE}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <p>{props.errorMessage}</p>
+      <p>{errorMessage}</p>
     </Modal.Body>
   </Modal>
 );

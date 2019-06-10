@@ -9,8 +9,6 @@ import "./services/GlobalErrorHandler";
 /**
  * @description: wrapper file to contain path finder component
  */
-const App = () => {
-  return <PathFinder />;
-};
+const App = () => <PathFinder />;
 
 export default App;
