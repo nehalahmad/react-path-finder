@@ -32,13 +32,18 @@ import "./../assets/css/App.css";
  * @description: Main container file to display entire Map Page
  */
 export default class PathFinder extends Component {
-  state = {
-    isLoader: false,
-    direction: null,
-    token: null,
-    message: "",
-    errorMessage: ""
-  };
+  constructor(props) {
+    this.state = {
+      isLoader: false,
+      direction: null,
+      token: null,
+      message: "",
+      errorMessage: ""
+    };
+  
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+  }
+  
 
   render() {
     const { token, message, isLoader, errorMessage, direction } = this.state;
@@ -74,7 +79,7 @@ export default class PathFinder extends Component {
   /**
    * @description: Form submit handler, to get token first and then call another function to get direction
    */
-  handleOnSubmit = async formData => {
+  async handleOnSubmit(formData) {
     try {
       this.setState({ isLoader: true });
 
