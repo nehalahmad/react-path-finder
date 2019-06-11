@@ -33,6 +33,8 @@ import "./../assets/css/App.css";
  */
 export default class PathFinder extends Component {
   constructor(props) {
+    super(props);
+    
     this.state = {
       isLoader: false,
       direction: null,
