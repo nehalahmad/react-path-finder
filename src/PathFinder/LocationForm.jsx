@@ -1,16 +1,16 @@
 // PathFinder/LocationForm.jsx
-import React, { Component, createRef } from "react";
-import PropTypes from "prop-types";
-import { Form, Col } from "react-bootstrap";
+import React, { Component, createRef } from 'react';
+import PropTypes from 'prop-types';
+import { Form, Col } from 'react-bootstrap';
 
-import LocationInput from "./LocationInput";
-import PathDetail from "./PathDetail";
-import ButtonContainer from "./ButtonContainer";
+import LocationInput from './LocationInput';
+import PathDetail from './PathDetail';
+import ButtonContainer from './ButtonContainer';
 
-import { LOCATION } from "../config/AppConstants";
+import { LOCATION } from '../config/AppConstants';
 
 // css
-import "./LocationForm.css";
+import './LocationForm.css';
 
 /**
  * @description: Form container, creating the locations input form
@@ -24,6 +24,47 @@ export default class LocationForm extends Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.handleOnReset = this.handleOnReset.bind(this);
     this.resetDirDetailMessage = this.resetDirDetailMessage.bind(this);
+  }
+
+  /**
+   * @name: Form submit handler
+   * @description: on submit will set from location and to location
+   */
+  handleOnSubmit(e) {
+    e.preventDefault();
+
+    const { handleOnSubmit } = this.props;
+
+    handleOnSubmit({
+      orgin: this.startLocRef.value,
+      destination: this.dropOffLocRef.value
+    });
+  }
+
+  /**
+   * @name: Form on reset handler
+   * @description: Will reset form inputs and some state as well
+   */
+  handleOnReset() {
+    const { resetHandler } = this.props;
+
+    this.startLocRef.value = '';
+    this.dropOffLocRef.value = '';
+    resetHandler();
+  }
+
+  /**
+   * @description: to remove non-reachable location message from from if both the location inputs went blank
+   */
+  resetDirDetailMessage() {
+    const { resetHandler } = this.props;
+
+    if (
+      !document.getElementById('startLoc').value ||
+      !document.getElementById('dropOffPoint').value
+    ) {
+      resetHandler();
+    }
   }
 
   render() {
@@ -69,48 +110,11 @@ export default class LocationForm extends Component {
       </Col>
     );
   }
-
-  /**
-   * @name: Form submit handler
-   * @description: on submit will set from location and to location
-   */
-  handleOnSubmit(e) {
-    e.preventDefault();
-
-    this.props.handleOnSubmit({
-      orgin: this.startLocRef.value,
-      destination: this.dropOffLocRef.value
-    });
-  }
-
-  /**
-   * @name: Form on reset handler
-   * @description: Will reset form inputs and some state as well
-   */
-  handleOnReset() {
-    this.startLocRef.value = "";
-    this.dropOffLocRef.value = "";
-    this.props.resetHandler();
-  }
-
-  /**
-   * @description: to remove non-reachable location message from from if both the location inputs went blank
-   */
-  resetDirDetailMessage() {
-    if (
-      !document.getElementById("startLoc").value ||
-      !document.getElementById("dropOffPoint").value
-    ) {
-      this.props.resetHandler();
-    }
-  }
 }
 
 LocationForm.propTypes = {
   handleOnSubmit: PropTypes.func.isRequired,
   resetHandler: PropTypes.func.isRequired,
   submitBtnText: PropTypes.string.isRequired,
-  setErrorMessage: PropTypes.func.isRequired,
-  direction: PropTypes.object,
-  message: PropTypes.string
+  setErrorMessage: PropTypes.func.isRequired
 };

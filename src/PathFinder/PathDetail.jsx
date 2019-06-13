@@ -1,9 +1,8 @@
 // PathFinder/PathDetail.jsx
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
-import { Alert } from "react-bootstrap";
+import React, { Fragment } from 'react';
+import { Alert } from 'react-bootstrap';
 
-import { TOTAL_DISTANCE, TOTAL_TIME } from "../config/AppConstants";
+import { TOTAL_DISTANCE, TOTAL_TIME } from '../config/AppConstants';
 
 /**
  * @description: to display information about distance, and also to show API response message
@@ -15,11 +14,11 @@ const PathDetail = ({ direction, message }) => (
         {[
           { key: TOTAL_DISTANCE, value: direction.total_distance },
           { key: TOTAL_TIME, value: direction.total_time }
-        ].map(({ key, value }, index) => {
+        ].map(({ key, value }) => {
           return (
-            <Alert variant="success" show={!!value} key={index}>
+            <Alert variant="success" show={!!value} key={key}>
               <strong>{key}</strong>
-              {" " + value}
+              {` ${value}`}
             </Alert>
           );
         })}
@@ -30,11 +29,5 @@ const PathDetail = ({ direction, message }) => (
     </Alert>
   </Fragment>
 );
-
-// validate prop types
-PathDetail.propTypes = {
-  message: PropTypes.string,
-  direction: PropTypes.object
-};
 
 export default PathDetail;

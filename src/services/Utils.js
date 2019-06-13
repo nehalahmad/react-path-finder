@@ -1,13 +1,16 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable no-shadow */
 /**
  * services/Utils.js
  * @description: Counter function to get new value of count
  */
 const counter = () => {
-  let counter = 1;
+  let counter = 0;
   return {
-    increment: () => counter++,
-    decrement: () => --counter,
+    increment: () => (counter += 1),
+    decrement: () => (counter -= 1),
     reset: () => (counter = 0)
   };
 };
-export let countFn = counter();
+export const countFn = counter();

@@ -1,11 +1,11 @@
 // PathFinder/LocationInput.jsx
-import React, { Component, createRef } from "react";
-import { Form, InputGroup } from "react-bootstrap";
-import PropTypes from "prop-types";
+import React, { Component, createRef } from 'react';
+import { Form, InputGroup } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
-import maps from "../services/GoogleMap";
+import maps from '../services/GoogleMap';
 
-import { LOCATION } from "../config/AppConstants";
+import { LOCATION } from '../config/AppConstants';
 
 /**
  * @name: InputBox
@@ -16,7 +16,7 @@ export default class LocationInput extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { value: "" };
+    this.state = { value: '' };
 
     this.inputRef = createRef();
   }
@@ -27,6 +27,45 @@ export default class LocationInput extends Component {
   componentDidMount() {
     this.autoComplete();
   }
+
+  /**
+   * @description: set input value
+   */
+  set value(value) {
+    this.setState({ value });
+  }
+
+  /**
+   * @description: get input value
+   */
+  get value() {
+    this.value = this.inputRef.value;
+    return this.inputRef.value;
+  }
+
+  /**
+   * @description: Autucomplete input fields based upon input location
+   */
+  autoComplete = async () => {
+    try {
+      const maps = await this.props.maps();
+      new maps.places.Autocomplete(this.inputRef);
+    } catch (error) {
+      const { setErrorMessage } = this.props;
+      setErrorMessage(error.message);
+    }
+  };
+
+  /**
+   * @description: if location input went blank, reset the form then
+   */
+  resetFieldHandler = () => {
+    const { resetDirDetailMessage } = this.props;
+
+    this.setState({ value: '' });
+    this.inputRef.focus();
+    resetDirDetailMessage();
+  };
 
   render() {
     const { title, placeholder, id, autoFocus } = this.props;
@@ -57,42 +96,6 @@ export default class LocationInput extends Component {
       </Form.Group>
     );
   }
-
-  /**
-   * @description: set input value
-   */
-  set value(value) {
-    this.setState({ value });
-  }
-
-  /**
-   * @description: get input value
-   */
-  get value() {
-    this.value = this.inputRef.value;
-    return this.inputRef.value;
-  }
-
-  /**
-   * @description: Autucomplete input fields based upon input location
-   */
-  autoComplete = async () => {
-    try {
-      const maps = await this.props.maps();
-      new maps.places.Autocomplete(this.inputRef);
-    } catch (error) {
-      this.props.setErrorMessage(error.message);
-    }
-  };
-
-  /**
-   * @description: if location input went blank, reset the form then
-   */
-  resetFieldHandler = () => {
-    this.setState({ value: "" });
-    this.inputRef.focus();
-    this.props.resetDirDetailMessage();
-  };
 }
 
 // validate the prop types
@@ -110,5 +113,5 @@ LocationInput.defaultProps = {
   title: LOCATION.ONE.TITLE,
   placeholder: LOCATION.ONE.PLACEHOLDER,
   autoFocus: false,
-  id: "startLoc"
+  id: 'startLoc'
 };

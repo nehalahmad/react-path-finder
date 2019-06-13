@@ -1,8 +1,8 @@
 // common/ErrorBoundary.jsx
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { SOMETHING_WRONG } from "../config/AppConstants";
-import "./ErrorBoundary.css";
+import { SOMETHING_WRONG } from '../config/AppConstants';
+import './ErrorBoundary.css';
 
 export default class ErrorBoundary extends Component {
   state = { error: null, errorInfo: null };
@@ -17,6 +17,7 @@ export default class ErrorBoundary extends Component {
   }
 
   render() {
+    const { children } = this.props;
     const { error, errorInfo } = this.state;
 
     if (errorInfo) {
@@ -32,6 +33,6 @@ export default class ErrorBoundary extends Component {
       );
     }
     // Normally, just render children
-    return this.props.children;
+    return children;
   }
 }

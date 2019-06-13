@@ -1,15 +1,15 @@
 // PathFinder/index.js
-import React, { Component } from "react";
-import { Container, Row } from "react-bootstrap";
+import React, { Component } from 'react';
+import { Container, Row } from 'react-bootstrap';
 
 // import custom components
-import { ErrorBoundary, Loader, ModalDialog } from "./../common";
-import LocationForm from "./LocationForm";
-import PathMap from "./PathMap";
+import { ErrorBoundary, Loader, ModalDialog } from '../common';
+import LocationForm from './LocationForm';
+import PathMap from './PathMap';
 
 // import api and utils
-import * as API from "./PathFinderAPI";
-import * as utils from "../services/Utils";
+import * as API from './PathFinderAPI';
+import * as utils from '../services/Utils';
 
 // import constants
 import {
@@ -17,16 +17,16 @@ import {
   NUMBER_ATTEMPTS,
   SUCCESS,
   FAIL
-} from "../config/ApiConstants";
+} from '../config/ApiConstants';
 import {
   DIRECTION_NOT_FOUND,
   SOMETHING_WRONG,
   RESUBMIT_TEXT,
   SUBMIT_TEXT
-} from "../config/AppConstants";
+} from '../config/AppConstants';
 
 // css file
-import "./../assets/css/App.css";
+import '../assets/css/App.css';
 
 /**
  * @description: Main container file to display entire Map Page
@@ -39,13 +39,90 @@ export default class PathFinder extends Component {
       isLoader: false,
       direction: null,
       token: null,
-      message: "",
-      errorMessage: ""
+      message: '',
+      errorMessage: ''
     };
 
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.resetApp = this.resetApp.bind(this);
     this.setErrorMessage = this.setErrorMessage.bind(this);
+  }
+
+  /**
+   * @description: Make API call to get direction
+   * @param: token
+   */
+  getDirection = async () => {
+    const { token } = this.state;
+    try {
+      const direction = await API.getDirection(token);
+      if (direction) {
+        this.handleDirectionResponse(direction);
+      } else {
+        throw new Error(DIRECTION_NOT_FOUND);
+      }
+    } catch (error) {
+      this.resetApp({ errorMessage: error.message, isLoader: false });
+    }
+  };
+
+  /**
+   * @description: Message handler to set error message
+   */
+  setErrorMessage(errorMessage) {
+    this.setState({ errorMessage });
+  }
+
+  /**
+   * @description: Handle final response in case of success, failure and in-progress
+   */
+  handleDirectionResponse = direction => {
+    switch (direction.data.status) {
+      case SUCCESS:
+        this.setState({
+          direction: direction.data,
+          isLoader: false,
+          message: ''
+        });
+        break;
+      case IN_PROGRESS:
+        // eslint-disable-next-line no-case-declarations
+        const triedAttempt = utils.countFn.increment();
+        if (triedAttempt <= NUMBER_ATTEMPTS) {
+          this.getDirection(); // try to fetch direction data if it fails due to any reason
+        } else {
+          utils.countFn.reset();
+          throw new Error(DIRECTION_NOT_FOUND);
+        }
+        break;
+      case FAIL:
+        this.resetApp({ message: direction.data.error, isLoader: false });
+        break;
+      default:
+        this.resetApp({ isLoader: false });
+        throw new Error(SOMETHING_WRONG);
+    }
+  };
+
+  /**
+   * @description: Reset app state
+   */
+  resetApp(stateObj = {}) {
+    this.setState({ direction: null, token: null, message: '', ...stateObj });
+  }
+
+  /**
+   * @description: Form submit handler, to get token first and then call another function to get direction
+   */
+  async handleOnSubmit(formData) {
+    try {
+      this.setState({ isLoader: true });
+
+      const token = await API.getToken(formData);
+      this.setState({ token }, this.getDirection);
+    } catch (error) {
+      this.resetApp({ errorMessage: error.message, isLoader: false });
+    }
   }
 
   render() {
@@ -78,79 +155,4 @@ export default class PathFinder extends Component {
       </Container>
     );
   }
-
-  /**
-   * @description: Form submit handler, to get token first and then call another function to get direction
-   */
-  async handleOnSubmit(formData) {
-    try {
-      this.setState({ isLoader: true });
-
-      const token = await API.getToken(formData);
-      this.setState({ token }, this.getDirection);
-    } catch (error) {
-      this.resetApp({ errorMessage: error.message, isLoader: false });
-    }
-  }
-
-  /**
-   * @description: Make API call to get direction
-   * @param: token
-   */
-  getDirection = async () => {
-    try {
-      const direction = await API.getDirection(this.state.token);
-      if (direction) {
-        this.handleDirectionResponse(direction);
-      } else {
-        throw new Error(DIRECTION_NOT_FOUND);
-      }
-    } catch (error) {
-      this.resetApp({ errorMessage: error.message, isLoader: false });
-    }
-  };
-
-  /**
-   * @description: Message handler to set error message
-   */
-  setErrorMessage(errorMessage) {
-    this.setState({ errorMessage });
-  }
-
-  /**
-   * @description: Reset app state
-   */
-  resetApp(stateObj = {}) {
-    this.setState({ direction: null, token: null, message: "", ...stateObj });
-  }
-
-  /**
-   * @description: Handle final response in case of success, failure and in-progress
-   */
-  handleDirectionResponse = direction => {
-    switch (direction.data.status) {
-      case SUCCESS:
-        this.setState({
-          direction: direction.data,
-          isLoader: false,
-          message: ""
-        });
-        break;
-      case IN_PROGRESS:
-        let triedAttempt = utils.countFn.increment();
-        if (triedAttempt <= NUMBER_ATTEMPTS) {
-          this.getDirection(); // try to fetch direction data if it fails due to any reason
-        } else {
-          utils.countFn.reset();
-          throw new Error(DIRECTION_NOT_FOUND);
-        }
-        break;
-      case FAIL:
-        this.resetApp({ message: direction.data.error, isLoader: false });
-        break;
-      default:
-        this.resetApp({ isLoader: false });
-        throw new Error(SOMETHING_WRONG);
-    }
-  };
 }
