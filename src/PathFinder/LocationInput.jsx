@@ -1,5 +1,5 @@
 // PathFinder/LocationInput.jsx
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import PropTypes from "prop-types";
 
@@ -13,7 +13,13 @@ import { LOCATION } from "../config/AppConstants";
  * @param: input location
  */
 export default class LocationInput extends Component {
-  state = { value: "" };
+  constructor(props) {
+    super(props);
+
+    this.state = { value: "" };
+
+    this.inputRef = createRef();
+  }
 
   /**
    * @description: life cycle method
@@ -32,7 +38,7 @@ export default class LocationInput extends Component {
         <InputGroup className="mb-3 map-input">
           <Form.Control
             type="text"
-            ref="formInput"
+            ref={ref => (this.inputRef = ref)}
             value={value}
             required
             onChange={e => this.setState({ value: e.target.value })}
@@ -63,8 +69,8 @@ export default class LocationInput extends Component {
    * @description: get input value
    */
   get value() {
-    this.value = this.refs.formInput.value;
-    return this.refs.formInput.value;
+    this.value = this.inputRef.value;
+    return this.inputRef.value;
   }
 
   /**
@@ -73,7 +79,7 @@ export default class LocationInput extends Component {
   autoComplete = async () => {
     try {
       const maps = await this.props.maps();
-      new maps.places.Autocomplete(this.refs.formInput);
+      new maps.places.Autocomplete(this.inputRef);
     } catch (error) {
       this.props.setErrorMessage(error.message);
     }
@@ -84,18 +90,19 @@ export default class LocationInput extends Component {
    */
   resetFieldHandler = () => {
     this.setState({ value: "" });
-    this.refs.formInput.focus();
+    this.inputRef.focus();
     this.props.resetDirDetailMessage();
   };
 }
 
 // validate the prop types
 LocationInput.propTypes = {
+  setErrorMessage: PropTypes.func.isRequired,
+  resetDirDetailMessage: PropTypes.func.isRequired,
   title: PropTypes.string,
   placeholder: PropTypes.string,
   autoFocus: PropTypes.bool,
-  setErrorMessage: PropTypes.func.isRequired,
-  resetDirDetailMessage: PropTypes.func.isRequired
+  id: PropTypes.string
 };
 
 LocationInput.defaultProps = {

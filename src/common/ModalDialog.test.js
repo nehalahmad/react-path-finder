@@ -13,17 +13,9 @@ describe("<ModalDialog />", () => {
   it("Render modal with a message", () => {
     const modalObj = shallow(
       <ModalDialog
-        errorMessage="Oops! something went wrong!"
+        errorMessage={errorMessage}
         setErrorMessageHandler={setErrorMessageHandler}
       />
-    );
-    expect(modalObj).toMatchSnapshot();
-  });
-
-  it("Render modal without a message", () => {
-    errorMessage = "";
-    const modalObj = shallow(
-      <ModalDialog setErrorMessageHandler={setErrorMessageHandler} />
     );
     expect(modalObj).toMatchSnapshot();
   });

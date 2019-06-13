@@ -34,7 +34,7 @@ import "./../assets/css/App.css";
 export default class PathFinder extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       isLoader: false,
       direction: null,
@@ -42,10 +42,11 @@ export default class PathFinder extends Component {
       message: "",
       errorMessage: ""
     };
-  
+
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.resetApp = this.resetApp.bind(this);
+    this.setErrorMessage = this.setErrorMessage.bind(this);
   }
-  
 
   render() {
     const { token, message, isLoader, errorMessage, direction } = this.state;
@@ -90,7 +91,7 @@ export default class PathFinder extends Component {
     } catch (error) {
       this.resetApp({ errorMessage: error.message, isLoader: false });
     }
-  };
+  }
 
   /**
    * @description: Make API call to get direction
@@ -112,16 +113,16 @@ export default class PathFinder extends Component {
   /**
    * @description: Message handler to set error message
    */
-  setErrorMessage = errorMessage => {
+  setErrorMessage(errorMessage) {
     this.setState({ errorMessage });
-  };
+  }
 
   /**
    * @description: Reset app state
    */
-  resetApp = (stateObj = {}) => {
+  resetApp(stateObj = {}) {
     this.setState({ direction: null, token: null, message: "", ...stateObj });
-  };
+  }
 
   /**
    * @description: Handle final response in case of success, failure and in-progress
@@ -136,9 +137,12 @@ export default class PathFinder extends Component {
         });
         break;
       case IN_PROGRESS:
-        let triedAttempt = utils.countFn();
+        let triedAttempt = utils.countFn.increment();
         if (triedAttempt <= NUMBER_ATTEMPTS) {
           this.getDirection(); // try to fetch direction data if it fails due to any reason
+        } else {
+          utils.countFn.reset();
+          throw new Error(DIRECTION_NOT_FOUND);
         }
         break;
       case FAIL:

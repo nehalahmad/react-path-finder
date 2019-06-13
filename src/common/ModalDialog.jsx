@@ -1,9 +1,10 @@
 // common/ModalDialog.jsx
 import React from "react";
+import PropTypes from "prop-types";
 import { Modal } from "react-bootstrap";
 import { ERROR_TITLE } from "../config/AppConstants";
 
-export default ({ errorMessage, setErrorMessageHandler }) => (
+const ModalDialog = ({ errorMessage, setErrorMessageHandler }) => (
   <Modal
     show={!!errorMessage}
     centered
@@ -17,3 +18,10 @@ export default ({ errorMessage, setErrorMessageHandler }) => (
     </Modal.Body>
   </Modal>
 );
+
+ModalDialog.propTypes = {
+  errorMessage: PropTypes.string.isRequired,
+  setErrorMessageHandler: PropTypes.func.isRequired
+};
+
+export default ModalDialog;

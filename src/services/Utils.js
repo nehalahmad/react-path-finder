@@ -4,6 +4,10 @@
  */
 const counter = () => {
   let counter = 1;
-  return () => counter++;
+  return {
+    increment: () => counter++,
+    decrement: () => --counter,
+    reset: () => (counter = 0)
+  };
 };
 export let countFn = counter();

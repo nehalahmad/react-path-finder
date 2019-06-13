@@ -1,5 +1,6 @@
 // PathFinder/PathMap.jsx
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
+import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 
 import maps from "../services/GoogleMap";
@@ -17,6 +18,12 @@ class Map extends Component {
   map;
   maps;
 
+  constructor(props) {
+    super(props);
+
+    this.mapContainerRef = createRef();
+  }
+
   /**
    * @description: life cycle method
    */
@@ -27,7 +34,10 @@ class Map extends Component {
   render() {
     return (
       <Col sm="8" lg="9" as="main">
-        <div ref="mapContainer" className="map-container" />
+        <div
+          ref={ref => (this.mapContainerRef = ref)}
+          className="map-container"
+        />
       </Col>
     );
   }
@@ -39,7 +49,7 @@ class Map extends Component {
     try {
       this.maps = await this.props.maps();
 
-      this.map = new this.maps.Map(this.refs.mapContainer, {
+      this.map = new this.maps.Map(this.mapContainerRef, {
         zoom: 10,
         center: { lat: 22.372081, lng: 114.107877 }
       });
@@ -153,6 +163,11 @@ class Map extends Component {
 
 Map.defaultProps = {
   maps
+};
+
+Map.propTypes = {
+  directions: PropTypes.object,
+  setErrorMessage: PropTypes.func.isRequired
 };
 
 export default Map;

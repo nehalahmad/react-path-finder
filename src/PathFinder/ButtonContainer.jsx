@@ -20,6 +20,7 @@ const ButtonContainer = ({ isLoader, submitBtnText }) => (
 
 // validate prop types
 ButtonContainer.propTypes = {
+  isLoader: PropTypes.bool.isRequired,
   submitBtnText: PropTypes.string.isRequired
 };
 

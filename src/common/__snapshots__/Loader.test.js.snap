@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Loader /> Loader renders 1`] = `ShallowWrapper {}`;
+exports[`<Loader /> not running 1`] = `ShallowWrapper {}`;
+
+exports[`<Loader /> running 1`] = `ShallowWrapper {}`;

@@ -1,4 +1,4 @@
 /* assets/css/App.css */
-#errorDetails {
-  whitespace: "pre-wrap";
+.errorDetails {
+  white-space: pre-wrap;
 }
